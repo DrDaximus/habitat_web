@@ -8,8 +8,8 @@
 </head>
 <body>
 
-<% if current_customer %>
-	Logged in as <%= current_customer.name %> |
+<% if current_user %>
+	Logged in as <%= current_user.lastname %> |
 	<%= link_to "Sign Out", logout_path %>
 <% end %>
 <%= yield %>

@@ -5,10 +5,10 @@ class CustomerLink < ApplicationMailer
     	mail(to: @project.email, subject: 'Register a My Habitat Account')
   end
 
-  def existing_customer_new_project(project, customer)
+  def existing_customer_new_project(project, user)
     	@project = project
-    	@customer = customer
-    	mail(to: @customer.email, subject: 'Your New Habitat Project')
+    	@user = user
+    	mail(to: @user.email, subject: 'Your New Habitat Project')
   end
 
 end

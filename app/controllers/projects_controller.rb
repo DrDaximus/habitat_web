@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_filter :authorise
+  before_filter :authorise, except: [:new, :create]
   before_filter :must_be_admin, except: [:new, :create, :show]
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
@@ -16,7 +16,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/new
   def new
-    @project = Project.new(reference: params[:reference], customer_id: params[:customer_id])
+    @project = Project.new(reference: params[:reference], user_id: params[:user_id], email: params[:email], added_by: params[:added_by])
   end
 
   # GET /projects/1/edit
@@ -31,16 +31,18 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       if @project.save
         
-        if @project.email?
-         CustomerLink.link_email(@project).deliver_now
+        if @project.user_id?
+          @user = User.find(@project.user_id)
+          CustomerLink.existing_customer_new_project(@project, @user).deliver_now
+        else
+          CustomerLink.link_email(@project).deliver_now
         end
-        if @project.customer_id?
-          @customer = Customer.find(@project.customer_id)
-          CustomerLink.existing_customer_new_project(@project, @customer).deliver_now
+        if current_user
+          format.html { redirect_to @project, notice: 'Project was successfully created.' }
+          format.json { render :show, status: :created, location: @project }
+        else
+           format.html { redirect_to root_path, notice: 'Project was successfully created.' }
         end
-
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
-        format.json { render :show, status: :created, location: @project }
       else
         format.html { render :new }
         format.json { render json: @project.errors, status: :unprocessable_entity }
@@ -80,13 +82,13 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:reference, :added_by, :job_type, :stage, :quote, :start_date, :team, :pif, :contract, :handled, :q_sent, :customer_id, :email)
+      params.require(:project).permit(:reference, :added_by, :job_type, :stage, :quote, :start_date, :team, :pif, :contract, :handled, :q_sent, :user_id, :email)
     end
 
     def must_be_admin
-      unless current_customer && current_customer.id == 999
-        if current_customer
-          redirect_to customer_path(current_customer), notice: "Not Authorised"
+      unless current_user && current_user.admin?
+        if current_user
+          redirect_to user_path(current_user), notice: "Not Authorised"
         else
           redirect_to signin_url, notice: "Not Authorised"
         end

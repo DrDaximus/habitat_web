@@ -2,8 +2,16 @@
 
 one:
   name: MyString
+  lastname: MyString
+  email: MyString
+  password_digest: MyString
   reference: MyString
+  role: 1
 
 two:
   name: MyString
+  lastname: MyString
+  email: MyString
+  password_digest: MyString
   reference: MyString
+  role: 1

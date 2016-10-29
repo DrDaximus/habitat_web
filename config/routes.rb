@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-
-  get 'signup', to: 'customers#new', as: 'signup'
+  
+  get 'signup', to: 'users#new', as: 'signup'
   get 'signin', to: 'sessions#new', as: 'signin'
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
-  resources :customers
+  resources :users
   resources :projects
   resources :sessions
 

@@ -1,6 +1,8 @@
 <h1> Welcome to Habitat.co.uk </h1>
-<% if current_customer %>
-	<%= link_to "My Habitat", customer_path(current_customer.id) %>
+<% if current_user %>
+	<%= link_to "My Habitat", user_path(current_user.id) %>
 <% else %>
 	<%= link_to "My Habitat", signin_path %>
 <% end %>
+
+<%= new_project_links %>

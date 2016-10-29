@@ -1,4 +1,9 @@
-<h1>New Project</h1>
+<% if current_user && current_user.admin? %>
+	<h1>New Project</h1>
+	IMPORTANT! - In order for the customer to be able to create a My Habitat account, you must enter their email address in the box below.<br><br>
+<% else %>
+	<h1>New Enquiry</h1>
+<% end %>
 
 <%= render 'form' %>
 

@@ -11,33 +11,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161029130120) do
-
-  create_table "customers", force: :cascade do |t|
-    t.string   "name"
-    t.string   "reference"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.string   "email"
-    t.string   "password_digest"
-  end
+ActiveRecord::Schema.define(version: 20161029173859) do
 
   create_table "projects", force: :cascade do |t|
     t.string   "reference"
-    t.string   "added_by",    default: "Unknown"
+    t.string   "added_by",   default: "Unknown"
     t.string   "job_type"
-    t.integer  "stage",       default: 1
-    t.decimal  "quote",       default: 0.0
+    t.integer  "stage",      default: 1
+    t.decimal  "quote",      default: 0.0
     t.date     "start_date"
     t.integer  "team"
-    t.boolean  "pif",         default: false
-    t.boolean  "contract",    default: false
-    t.boolean  "handled",     default: false
-    t.boolean  "q_sent",      default: false
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.integer  "customer_id"
+    t.boolean  "pif",        default: false
+    t.boolean  "contract",   default: false
+    t.boolean  "handled",    default: false
+    t.boolean  "q_sent",     default: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.string   "email"
+    t.integer  "user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.string   "lastname"
+    t.string   "email"
+    t.string   "password_digest"
+    t.string   "reference"
+    t.integer  "role"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
 end

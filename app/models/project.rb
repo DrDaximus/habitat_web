@@ -1,25 +1,26 @@
 class Project < ActiveRecord::Base
 
-	belongs_to :customer # Only if customer registers their account. 
+	belongs_to :user # Only if customer registers their account.  
 
-	# Only if an email address is present when a new enquiry is generated, check if that email already exists in the customer database.
-	validate :check_existing_customer, if: :email?, on: :create
+	# If no user logged in, check if that email already exists in the customer database.
+	validate :check_existing_customer, unless: :user_id?, on: :create
 
 	# If there is a customer_id present on creation of a new project, it implies that an eamil already exists and has not been enetered, so is not required for validation
-	validates :email, presence: true, unless: :customer_id?, on: :create
+	validates :email, presence: true, unless: :user_id?, on: :create
+	validates :job_type, presence: true
 
 	# When customer creates an acc, update project with id.
-	def update_customer_id(project, id)
-		project.update_attributes(:customer_id => id)
+	def update_user_id(project, id)
+		project.update_attributes(:user_id => id)
 	end
 
 	# Check to see if the email address entered for a new enquiry already exists in the customer database.
 	def check_existing_customer
-		@customer = Customer.where(["email = ?", self.email]).first
-		@email = self.email
-		if @email == @customer.try(:email)
-			errors.add(:email, "- It appears you already have a 'My Habitat' account")
-		end
+			@user = User.where(["email = ?", self.email]).first
+			@email = self.email
+			if @email == @user.try(:email)
+				errors.add(:email, "- It appears you already have a 'My Habitat' account")
+			end
 	end
 
 end

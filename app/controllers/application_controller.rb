@@ -5,12 +5,12 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def current_customer
-  	@current_customer ||= Customer.find(session[:customer_id]) if session[:customer_id]
+  def current_user
+  	@current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
-  helper_method :current_customer
+  helper_method :current_user
 
   def authorise
-  	redirect_to signin_url, alert: "Not Authorised" if current_customer.nil?
+  	redirect_to signin_url, alert: "Not Authorised" if current_user.nil?
   end
 end

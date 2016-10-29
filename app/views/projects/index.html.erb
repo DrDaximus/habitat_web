@@ -25,9 +25,9 @@
     <% @projects.each do |project| %>
       <tr>
         <td>
-          <% if project.customer %>
-            <%= link_to customer_path(project.customer.id) do %>
-              <%= project.customer.name %>
+          <% if project.user %>
+            <%= link_to user_path(project.user.id) do %>
+              <%= project.user.lastname %>
             <% end %>
           <% else %>
            Not Registered
@@ -54,4 +54,3 @@
 
 <br>
 
-<%= link_to 'New Enquiry', new_project_path(:reference => generate_project_reference) %>

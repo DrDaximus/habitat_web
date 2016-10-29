@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %> <%= @user.lastname %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Role:</strong>
+  <%= @user.role %>
+</p>
+
+<% if @user.customer? %>
+<p>
+  <strong>Jobs</strong><br>
+  <% @projects.each do |project| %>
+    --------------------------------
+    <%= link_to project_path(project.id) do %>
+    <br>
+    <strong>Job Type:</strong>
+    <%= project.job_type %><br>
+    <strong>Added by:</strong>
+    <%= project.added_by %><br>
+
+    <% end %>
+    --------------------------------
+  <% end %>
+</p>
+<% end %>
+
+<%= new_project_links %>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
