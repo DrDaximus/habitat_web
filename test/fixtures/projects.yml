@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  reference: MyString
+  added_by: 1
+  job_type: 1
+  stage: 1
+  quote: 9.99
+  start_date: 2016-10-28
+  team: 1
+  pif: false
+  contract: false
+  handled: false
+  q_sent: false
+
+two:
+  reference: MyString
+  added_by: 1
+  job_type: 1
+  stage: 1
+  quote: 9.99
+  start_date: 2016-10-28
+  team: 1
+  pif: false
+  contract: false
+  handled: false
+  q_sent: false

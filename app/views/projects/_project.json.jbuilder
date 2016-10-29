@@ -1,0 +1,2 @@
+json.extract! project, :id, :reference, :added_by, :job_type, :stage, :quote, :start_date, :team, :pif, :contract, :handled, :q_sent, :created_at, :updated_at
+json.url project_url(project, format: :json)

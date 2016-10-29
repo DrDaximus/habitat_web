@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Reference:</strong>
+  <%= @project.reference %>
+</p>
+
+<p>
+  <strong>Added by:</strong>
+  <%= @project.added_by %>
+</p>
+
+<p>
+  <strong>Job type:</strong>
+  <%= @project.job_type %>
+</p>
+
+<p>
+  <strong>Stage:</strong>
+  <%= @project.stage %>
+</p>
+
+<p>
+  <strong>Quote:</strong>
+  <%= @project.quote %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @project.start_date %>
+</p>
+
+<p>
+  <strong>Team:</strong>
+  <%= @project.team %>
+</p>
+
+<p>
+  <strong>Pif:</strong>
+  <%= @project.pif %>
+</p>
+
+<p>
+  <strong>Contract:</strong>
+  <%= @project.contract %>
+</p>
+
+<p>
+  <strong>Handled:</strong>
+  <%= @project.handled %>
+</p>
+
+<p>
+  <strong>Q sent:</strong>
+  <%= @project.q_sent %>
+</p>
+
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>

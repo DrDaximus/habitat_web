@@ -1,0 +1,38 @@
+<%= form_for(@project) do |f| %>
+  <% if @project.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+      <ul>
+      <% @project.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <%= f.hidden_field :customer_id %> 
+
+  <% if @project.customer_id.blank? %>
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.email_field :email %>
+  </div>
+
+  <% end %>
+  <div class="field">
+    <%= f.label :reference %><br>
+    <%= f.text_field :reference %>
+  </div>
+  <div class="field">
+    <%= f.label :added_by %><br>
+    <%= f.select :added_by, options_for_added_by, :selected => 3 %>
+  </div>
+  <div class="field">
+    <%= f.label :job_type %><br>
+    <%= f.select :job_type, options_for_job_type %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
