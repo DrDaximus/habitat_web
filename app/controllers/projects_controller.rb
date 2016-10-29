@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_filter :authorise, except: [:new, :create]
+  before_filter :authorise
   before_filter :must_be_admin, except: [:new, :create, :show]
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
@@ -16,7 +16,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/new
   def new
-    @project = Project.new(reference: params[:reference], user_id: params[:user_id], email: params[:email], added_by: params[:added_by])
+    @project = Project.new(user_id: params[:user_id], email: params[:email], added_by: params[:added_by])
   end
 
   # GET /projects/1/edit
@@ -31,9 +31,11 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       if @project.save
         
-        if @project.user_id?
+        if current_user.customer?
           @user = User.find(@project.user_id)
           CustomerLink.existing_customer_new_project(@project, @user).deliver_now
+        elsif current_user.admin?
+          CustomerLink.admin_invite(@project).deliver_now
         else
           CustomerLink.link_email(@project).deliver_now
         end
@@ -82,7 +84,7 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:reference, :added_by, :job_type, :stage, :quote, :start_date, :team, :pif, :contract, :handled, :q_sent, :user_id, :email)
+      params.require(:project).permit(:reference, :added_by, :job_type, :stage, :quote, :start_date, :team, :pif, :contract, :handled, :q_sent, :user_id, :email, :customer)
     end
 
     def must_be_admin

@@ -25,12 +25,12 @@
     <% @projects.each do |project| %>
       <tr>
         <td>
-          <% if project.user %>
+          <% if project.user && project.user.customer? %>
             <%= link_to user_path(project.user.id) do %>
               <%= project.user.lastname %>
             <% end %>
           <% else %>
-           Not Registered
+            <%= project.customer %>
           <% end %>
         </td>
         <td><%= project.reference %></td>

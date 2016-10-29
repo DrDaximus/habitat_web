@@ -4,7 +4,7 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Hi there,</h1>
+    <h1>Hi <%= @project.customer %>,</h1>
     <p>
       Thank you for contacting us at Habitat Landscapes.
       
@@ -16,12 +16,7 @@
       
       <br><br>
       Why not make it personal with your very own Habitat account. 
-      
-      <br><br>
-      Follow this link to quickly create one. 
-      
-      <br><br>
-      <%= new_user_url(:email => @project.email) %>
+    
     
 			<br><br>
 			The Habitat Team

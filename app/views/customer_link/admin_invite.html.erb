@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hi <%= @project.customer %>,</h1>
+    <p>
+      Thank you for contacting us at Habitat Landscapes.
+      
+      <br><br>
+      While we deal with your enquiry, please take 2 minutes to create a My Habitat account to track your project. A Habitat account offers many great features, inlcuding the ability to follow your project from start to finish should you choose us to undertake your work. You will also be able stay in touch with us specifically regarding your own enquiry/project. 
+      
+      <br><br>
+      Why not make it personal with your very own Habitat account. 
+      
+      <br><br>
+      Follow this link to quickly create one. 
+      
+      <br><br>
+      <%= new_user_url(:reference => @project.reference) %>
+    
+			<br><br>
+			The Habitat Team
+    </p>
+  </body>
+</html>

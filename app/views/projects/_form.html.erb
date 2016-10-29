@@ -12,10 +12,15 @@
   <% end %>
   
   <%= f.hidden_field :user_id %> 
-
+  
   <div class="field">
-    <% if current_user && current_user.admin? %>
-      <%= f.label :email, value: "Customer email" %>
+    <% if current_user && !current_user.customer? %>
+      <div class="field">
+        <%= f.label :customer, value: "Customer Name" %><br>
+        <%= f.text_field :customer %>
+      </div>
+      <div class="field">
+        <%= f.label :email, value: "Customer email" %>
     <% else %>
       <%= f.label :email %>
     <% end %>
@@ -25,7 +30,7 @@
 
   <div class="field">
     <%= f.label :reference %><br>
-    <%= f.text_field :reference %>
+    <%= f.text_field :reference, :value => generate_project_reference %>
   </div>
   <div class="field">
     <%= f.label :added_by %><br>

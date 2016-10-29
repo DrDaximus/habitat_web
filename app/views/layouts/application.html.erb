@@ -9,8 +9,12 @@
 <body>
 
 <% if current_user %>
-	Logged in as <%= current_user.lastname %> |
-	<%= link_to "Sign Out", logout_path %>
+	Logged in as <strong><%= current_user.regname %></strong> |
+	<% if current_user.guest? %>
+		<%= upgrade_account_link %>
+	<% else %>
+		<%= link_to "Sign Out", logout_path %>
+	<% end %>
 <% end %>
 <%= yield %>
 

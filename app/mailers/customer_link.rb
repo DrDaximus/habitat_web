@@ -11,4 +11,9 @@ class CustomerLink < ApplicationMailer
     	mail(to: @user.email, subject: 'Your New Habitat Project')
   end
 
+  def admin_invite(project)
+  	@project = project
+    mail(to: @project.email, subject: 'Register a My Habitat Account')
+  end
+
 end
