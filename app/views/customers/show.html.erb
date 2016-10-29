@@ -19,11 +19,14 @@
 	<strong>Jobs</strong><br>
   <% @projects.each do |project| %>
   	--------------------------------
+    <%= link_to project_path(project.id) do %>
   	<br>
   	<strong>Job Type:</strong>
 		<%= project.job_type %><br>
 		<strong>Added by:</strong>
   	<%= project.added_by %><br>
+
+    <% end %>
 		--------------------------------
   <% end %>
 </p>

@@ -1,4 +1,5 @@
 class CustomersController < ApplicationController
+  before_filter :authorise
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
 
   # GET /customers
@@ -10,7 +11,7 @@ class CustomersController < ApplicationController
   # GET /customers/1
   # GET /customers/1.json
   def show
-    @projects = Project.where(["reference = ?", @customer.reference])
+    @projects = Project.where(["customer_id = ?", @customer.id])
   end
 
   # GET /customers/new
@@ -29,6 +30,7 @@ class CustomersController < ApplicationController
 
     respond_to do |format|
       if @customer.save
+        session[:customer_id] = @customer.id
         format.html { redirect_to @customer, notice: 'Customer was successfully created.' }
         format.json { render :show, status: :created, location: @customer }
       else
@@ -70,6 +72,6 @@ class CustomersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_params
-      params.require(:customer).permit(:name, :reference, :email)
+      params.require(:customer).permit(:name, :reference, :email, :password_digest, :password, :password_confirmation)
     end
 end

@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+  before_filter :authorise
+  before_filter :must_be_admin, except: [:new, :create, :show]
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   # GET /projects
@@ -80,4 +82,15 @@ class ProjectsController < ApplicationController
     def project_params
       params.require(:project).permit(:reference, :added_by, :job_type, :stage, :quote, :start_date, :team, :pif, :contract, :handled, :q_sent, :customer_id, :email)
     end
+
+    def must_be_admin
+      unless current_customer && current_customer.id == 999
+        if current_customer
+          redirect_to customer_path(current_customer), notice: "Not Authorised"
+        else
+          redirect_to signin_url, notice: "Not Authorised"
+        end
+      end
+    end
+    
 end

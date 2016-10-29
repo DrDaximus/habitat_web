@@ -1,5 +1,7 @@
 class Customer < ActiveRecord::Base
 
+	has_secure_password
+
 	has_many :projects
 
 	# Ensure reference code is formatted correctly
@@ -7,9 +9,9 @@ class Customer < ActiveRecord::Base
 	# Ensure no duplicate email addresses for accounts.
 	validates :email, uniqueness: true
 
-	after_save :update_projects
+	after_save :update_project
 	# When customer creates an account with project ref, update project to associate with the customer using that reference.
-	def update_projects
+	def update_project
 		@project = Project.where(["reference = ?", self.reference]).first
 		@project.update_customer_id(@project, self.id)
 	end

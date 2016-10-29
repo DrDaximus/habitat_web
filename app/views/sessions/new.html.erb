@@ -1,0 +1,18 @@
+<h1>Sign In</h1>
+<p>Sign in to your My Habitat account here.</p>
+
+<%= form_for :signin, { url: sessions_path } do |f| %>
+  <% if flash[:notice] %>
+     <div class="notice"><%= flash[:notice] %></div>
+  <% end %>
+   <%= f.label :email %><br>
+  <%= f.email_field :email %><br>
+   <%= f.label :password %><br>
+  <%= f.password_field :password %><br>
+  <br>
+  <%= f.submit value: "Sign in" %> 
+	<%= link_to "Sign Up", signup_path %>
+
+
+<% end %>
+
