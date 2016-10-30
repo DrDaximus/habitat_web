@@ -33,9 +33,9 @@ module ApplicationHelper
 
 	def new_project_links
 		if current_user && current_user.admin?
-			link_to 'New Project', new_project_path(:added_by => current_user.name)
+			link_to 'New Project', new_project_path(:added_by => current_user.role)
 		elsif current_user && current_user.customer?
-			link_to 'New Enquiry', new_project_path(:user_id => current_user.id, :email => current_user.email, :added_by => "Customer")
+			link_to 'New Enquiry', new_project_path(:user_id => current_user.id, :email => current_user.email, :added_by => current_user.role)
 		elsif current_user && current_user.guest?
 			upgrade_account_link
 		else

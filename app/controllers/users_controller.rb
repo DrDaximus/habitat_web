@@ -31,7 +31,7 @@ class UsersController < ApplicationController
         current_user.move_to(@user) if current_user && current_user.guest?
         session[:user_id] = @user.id
         if @user.guest?
-          format.html { redirect_to new_project_path(user_id: current_user.id,added_by: "Web") }
+          format.html { redirect_to new_project_path(user_id: current_user.id,added_by: "guest") }
         else
           format.html { redirect_to @user, notice: 'User was successfully created.' }
           format.json { render :show, status: :created, location: @user }

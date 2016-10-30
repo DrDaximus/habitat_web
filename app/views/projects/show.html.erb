@@ -2,10 +2,14 @@
 
 <p id="notice"><%= notice %></p>
 
-<% unless @project.user_id %>
-  Invite Customer
+<% if current_user.admin? %>
+  <%= link_to "Invite Customer", send_invite_project_path(@project) %>
 <% end %>
 
+<p>
+  <strong>email:</strong>
+  <%= @project.email %>
+</p>
 
 <p>
   <strong>Reference:</strong>

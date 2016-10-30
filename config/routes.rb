@@ -4,8 +4,14 @@ Rails.application.routes.draw do
   get 'signin', to: 'sessions#new', as: 'signin'
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
+
+
   resources :users
-  resources :projects
+  resources :projects do
+    member do
+      get 'send_invite' => 'projects#send_invite'
+    end
+  end
   resources :sessions
 
   # The priority is based upon order of creation: first created -> highest priority.

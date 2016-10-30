@@ -4,6 +4,8 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
+    <p>...to get a full access My Habitat account</p>
+
     <h1>Hi <%= @project.customer %>,</h1>
     <p>
       Thank you for contacting us at Habitat Landscapes.
@@ -12,11 +14,13 @@
       We will be dealing with your request as soon as possible, and someone from the Habitat team will be in touch very soon.
       
       <br><br>
-      In the mean time, take 2 minutes to create a My Habitat account to track your enquiry. A Habitat account offers many great features, inlcuding the ability to follow your project from start to finish should you choose us to undertake your work. You will also be able stay in touch with us specifically regarding your own enquiry/project. 
+      In the mean time, please take 2 minutes to create a My Habitat account to take full advantage of all the features we offer such as the ability to track your enquiries, and follow your projects all the way to completeion should they progress further. Don't worry, it's also completely FREE.
       
       <br><br>
-      Why not make it personal with your very own Habitat account. 
-    
+      Go on... make it personal with your very own Habitat account. Either follow the "sign up to track your enquiry" link on our website, or click the link below.
+
+      <br><br>
+      <%= signup_url(:reference => @project.reference) %>
     
 			<br><br>
 			The Habitat Team

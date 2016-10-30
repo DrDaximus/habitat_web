@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   before_filter :authorise
   before_filter :must_be_admin, except: [:new, :create, :show]
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :edit, :update, :destroy, :send_email]
 
   # GET /projects
   # GET /projects.json
@@ -27,24 +27,11 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(project_params)
-
     respond_to do |format|
       if @project.save
-        
-        if current_user.customer?
-          @user = User.find(@project.user_id)
-          CustomerLink.existing_customer_new_project(@project, @user).deliver_now
-        elsif current_user.admin?
-          CustomerLink.admin_invite(@project).deliver_now
-        else
-          CustomerLink.link_email(@project).deliver_now
-        end
-        if current_user
-          format.html { redirect_to @project, notice: 'Project was successfully created.' }
-          format.json { render :show, status: :created, location: @project }
-        else
-           format.html { redirect_to root_path, notice: 'Project was successfully created.' }
-        end
+        send_email
+        format.html { redirect_to @project, notice: 'Project was successfully created.' }
+        format.json { render :show, status: :created, location: @project }
       else
         format.html { render :new }
         format.json { render json: @project.errors, status: :unprocessable_entity }
@@ -76,12 +63,36 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def send_invite
+    @project = Project.find(params[:id])
+    if @project.email?
+      CustomerLink.admin_invite(@project).deliver_now
+      redirect_to @project, notice: "Invite Sent"
+    else
+      redirect_to @project, notice: "No Email Address Available!!!" 
+    end
+  end
+
   private
+
+    def send_email
+      if current_user.customer?
+        @user = User.find(@project.user_id)
+        CustomerLink.existing_customer_new_project(@project, @user).deliver_now
+      elsif current_user.admin?
+        if @project.email?
+          CustomerLink.admin_invite(@project).deliver_now
+        end
+      else
+        CustomerLink.link_email(@project).deliver_now
+      end
+    end 
+
     # Use callbacks to share common setup or constraints between actions.
     def set_project
       @project = Project.find(params[:id])
     end
-
+   
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
       params.require(:project).permit(:reference, :added_by, :job_type, :stage, :quote, :start_date, :team, :pif, :contract, :handled, :q_sent, :user_id, :email, :customer)
