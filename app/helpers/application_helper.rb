@@ -33,18 +33,27 @@ module ApplicationHelper
 
 	def new_project_links
 		if current_user && current_user.admin?
-			link_to 'New Project', new_project_path(:added_by => current_user.role)
+			link_to 'new project', new_project_path(:added_by => current_user.role)
 		elsif current_user && current_user.customer?
-			link_to 'New Enquiry', new_project_path(:user_id => current_user.id, :email => current_user.email, :added_by => current_user.role)
+			link_to 'new enquiry', new_project_path(:user_id => current_user.id, :email => current_user.email, :added_by => current_user.role)
 		elsif current_user && current_user.guest?
 			upgrade_account_link
 		else
-			link_to 'New Enquiry', users_path, method: :post
+			link_to 'new enquiry', users_path, method: :post
 		end
 	end
 
 	def upgrade_account_link
-		link_to 'Sign up to track your enquiry', signup_path 
+		link_to 'sign up to track your enquiry', signup_path 
 	end
+
+	def user_menu
+
+		if current_user && current_user.admin?
+    	render 'shared/admin_menu_bar'
+  	else  
+    	render 'shared/customer_menu_bar'
+  	end
+  end
 
 end

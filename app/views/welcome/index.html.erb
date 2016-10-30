@@ -1,8 +1,94 @@
-<h1> Welcome to Habitat.co.uk </h1>
-<% if current_user %>
-	<%= link_to "My Habitat", user_path(current_user.id) %>
-<% else %>
-	<%= link_to "My Habitat", signin_path %>
-<% end %>
+<section>
+	<div id="welcome-bar" class="bar-style bar-thin">
+		<span>Welcome to</span>
+	</div>
+	<div id="banner-section">
+		<div id="floating-banner">
+			<div id="white-logo">
+				<%= image_tag("habitat-logo-white.png", :alt => "Habitat Logo") %>
+			</div>
+			<div id="multi-award">
+				<%= image_tag("multi-award.png", :alt => "A multiple award winning service") %>
+			</div>
+		</div>
+	</div>
+  <%= user_menu %>
+</section>
 
-<%= new_project_links %>
+<section>
+	<div id="services-bar" class="row">
+		<div class="col-xs-4 service-items" id="design">
+			<%= link_to "#" do %>
+				<div class="service-item bar-style">
+					<span>design.</span>
+					<div class="service-text">
+						<ul>
+							Full Design Packages
+							<br><br>
+							<li>Qualified Designers</li>
+							<li>Stunning Concepts</li>
+							<li>Seamless Integration</li>
+							<li>Fully Managed</li>
+							<li>Comprehensive Packages</li>
+							<li>The best way to realise your gardens full potential</li>
+							<br>
+							...contact us for more info.
+						</ul>
+					</div>
+				</div>
+			<% end %>
+		</div>
+		<div class="col-xs-4 service-items" id="build">
+			<%= link_to "#" do %>
+				<div class="service-item bar-style">
+					<span>build.</span>
+					<div class="service-text">
+						<ul>
+							Full Landscaping Services
+							<br><br>
+							<li>Driveways</li>
+							<li>Paving</li>
+							<li>Decking</li>
+							<li>Water Features</li>
+							<li>Garden Buildings</li>
+							<li>Sleeper Work</li>
+							<li>Garden Walls</li>
+							<br>
+							...and so much more.
+						</ul>
+					</div>
+				</div>
+			<% end %>
+		</div>
+		<div class="col-xs-4 service-items" id="maintain">
+			<%= link_to "#" do %>
+				<div class="service-item bar-style">
+					<span>maintain.</span>
+					<div class="service-text">
+						<ul>
+							Tailored Maintenance Packages
+							<br><br>
+							<li>Hedge Cutting</li>
+							<li>Lawn Mowing</li>
+							<li>Deck Maintenance</li>
+							<li>Garden Clearance</li>
+							<li>Fencing</li>
+							<li>Leaf Clearance</li>
+							<li>Bed Work</li>
+							<li>Seasonal Contracts</li>
+							<br>
+							Commercial contracts available.
+						</ul>
+					</div>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</section>	
+
+<section>
+	<div id="outro-bar" class="bar-style bar-thin">
+		<span>Discuss your dream garden with a member of the Habitat team on 01525 860 263</span>
+	</div>
+</section>
+

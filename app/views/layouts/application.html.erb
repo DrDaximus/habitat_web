@@ -7,16 +7,47 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<header>
+	<div id="logo">
+		<%= image_tag("habitat-logo.png", :alt => "Habitat Logo") %>
+	</div>
+	<div id="signout">
+		<% if current_user %>
+			Logged in as <strong><%= current_user.regname %></strong> |
+			<% if current_user.guest? %>
+				<%= upgrade_account_link %>
+			<% else %>
+				<%= link_to "Sign Out", logout_path %>
+			<% end %>
+		<% else %>
+			<%= link_to new_user_path do %>
+				Click here to register a <strong>My Habitat</strong> account.
+			<% end %>
+		<% end %>
+	</div>
+</header>
 
-<% if current_user %>
-	Logged in as <strong><%= current_user.regname %></strong> |
-	<% if current_user.guest? %>
-		<%= upgrade_account_link %>
-	<% else %>
-		<%= link_to "Sign Out", logout_path %>
-	<% end %>
+<% unless current_page?(controller: 'welcome') %>
+	<section>
+	<%= user_menu %>
 <% end %>
+
 <%= yield %>
+
+<% unless current_page?(controller: 'welcome') %>
+	</section>
+	<div id="footer-bar" class="bar-style bar-thin add-margin">
+  <span>Habitat Landscapes</span>
+</div>
+<% end %>
+
+<footer id="welcome-footer">
+	Copyright Habitat Landscapes Ltd 2016 (c) All Rights Reserved
+	<br>
+	<span>Website handcrafted by Carl Goulding</span>
+	<br>
+	<%= image_tag("mini-logo.png", :alt => "Habitat Logo Image") %>
+</footer>
 
 </body>
 </html>

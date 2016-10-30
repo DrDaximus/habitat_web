@@ -1,0 +1,13 @@
+<div id="menu-bar" class="bar-style bar-thin">
+	<span>
+		<% if params[:controller] != 'welcome' %>
+			<%= link_to "home", root_path %> |
+		<% end %>
+		<%= link_to "dashboard", user_path(current_user.id) %> |
+		<%= link_to 'projects', projects_path %> |
+		<%= link_to 'users', users_path %> |
+		<%= new_project_links %>
+	</span>
+</div>
+
+ 

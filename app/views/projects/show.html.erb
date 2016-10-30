@@ -1,4 +1,6 @@
-<h2>Show Job </h2>
+<div id="welcome-bar" class="bar-style bar-thin add-margin bold-bar">
+  <span><%= @project.reference %></span>
+</div>
 
 <p id="notice"><%= notice %></p>
 
@@ -9,11 +11,6 @@
 <p>
   <strong>email:</strong>
   <%= @project.email %>
-</p>
-
-<p>
-  <strong>Reference:</strong>
-  <%= @project.reference %>
 </p>
 
 <p>
@@ -28,3 +25,4 @@
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
+

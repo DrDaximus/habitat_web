@@ -1,0 +1,85 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ *= require font-awesome
+ */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+$banners: #4A4A4A;
+$banner-text: white;
+$main-font: LiSong, "LiSong Pro";
+$second-font: verdana, arial, helvetica, sans-serif;
+$text-hover: #9AC66A;
+
+a { color: $banners; &:hover {text-decoration: none; color: $text-hover;} }
+
+body {
+	margin: 0;
+	overflow: auto;
+}
+header {
+	color: $banners;
+	font-family: $main-font;
+	width: 1000px;
+	height: 100px;
+	margin: 0 auto;
+	#logo {
+		padding: 25px 40px;
+		width: 132px;
+		height: 41px;
+	}
+	#signout {
+		float: right;
+		text-align: right;
+		padding-top: 30px;
+	}
+}
+
+section {
+	width: 1000px;
+	margin: 0 auto;
+}
+
+.bar-style {
+	margin: 0 auto;
+	background: $banners;
+	text-align: center;
+	color: $banner-text;
+	font-family: $main-font;
+	letter-spacing: 3px;
+	font-weight: 100;	
+}
+
+.bar-thin {
+	width: 1000px;
+	height: 38px;
+	span {
+		font-size: 0.8em;
+		display: inline-block;
+		margin-top: 10px;
+		a { text-decoration: none; color: white; &:hover { color: #9AC66A; }}
+	}
+}
+
+.add-margin { margin-top: 1px; }
+
+.bold-bar { 
+	font-family: $second-font; 
+	font-size: 1.3em; 
+	span {margin-top: 6px;}
+}
+
+

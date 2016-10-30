@@ -1,6 +1,8 @@
-<p id="notice"><%= notice %></p>
+<div id="welcome-bar" class="bar-style bar-thin add-margin bold-bar">
+  <span>Habitat Users</span>
+</div>
 
-<h1>Listing Users</h1>
+<p id="notice"><%= notice %></p>
 
 <table>
   <thead>
@@ -14,7 +16,7 @@
   </thead>
 
   <tbody>
-    <% @users.each do |user| %>
+    <% @users.order(role: :asc).each do |user| %>
       <tr>
         <td><%= user.name %></td>
         <td><%= user.lastname %></td>

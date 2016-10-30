@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 
 	has_many :projects
 
-	enum role: [:customer, :admin, :guest]
+	enum role: [:admin, :customer, :guest]
 
 	after_initialize :set_default_role, :if => :new_record?
 	validates_presence_of :email, :password_digest, unless: :guest?

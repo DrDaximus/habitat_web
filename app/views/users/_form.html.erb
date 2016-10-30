@@ -11,6 +11,13 @@
     </div>
   <% end %>
 
+  <% if current_user.admin? && current_page?(action: "new")%>
+    <div class="field">
+    <%= f.label :role %><br>
+    <%= f.text_field :role, value: :admin %>
+    </div>
+  <% end %>
+
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>

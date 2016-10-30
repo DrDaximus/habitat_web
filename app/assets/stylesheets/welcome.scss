@@ -1,3 +1,87 @@
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#banner-section {
+	margin: 1px auto;
+	height: 350px;
+	width: 1000px;
+	background-image: url(image_path("banner-img.png"));
+	#floating-banner {
+		position: absolute;
+		left: 0;
+		top: 204px;
+		height: 215px;
+		width: 100%;
+		background: RGBA(74,74,74,0.77);
+		#white-logo {
+			width: 263px;
+			height: 83px;
+			margin: 40px auto;
+			margin-bottom: 35px;
+		}
+		#multi-award {
+			width: 390px;
+			height: 24px;
+			margin: 0px auto;
+		}
+	}
+}
+
+#services-bar { 
+	width: 1000px;
+	height: 340px;
+	background: white;
+	margin: 0 auto;
+	.service-items {
+		height: 340px;
+		border-top: solid 1px white;
+		border-bottom: solid 1px white;
+		padding: 0;
+	}
+	#build { border-left: solid 1px white; border-right: solid 1px white; }
+	.service-item {
+		overflow: hidden;
+		height: 73px;
+		text-align: center;
+		padding-top: 20px;
+		font-size: 1.3em;
+		transition: all 1s ease-in-out;
+		span { transition: color 0.5s ease-in-out; }
+		&:hover {
+			span { color: #9AC66A; }
+			height: 338px;
+			background: RGBA(74,74,74,0.77);
+		}
+	}	
+
+	.service-text {
+		padding-top: 50px;
+		font-size: 0.7em;
+		text-align: left;
+	}
+
+	#design {
+		background-image: image-url("design-img.png");
+	}
+	#build {
+		background-image: image-url("build-img.png");
+	}
+	#maintain {
+		background-image: image-url("maintain-img.png");
+	}
+}
+
+#welcome-footer {
+	padding: 5px;
+	color: #9B9B9B;
+	text-align: center;
+	font-family: LiSong, "LiSong Pro";
+	font-size: 0.8em;
+	letter-spacing: 2px;
+	span {
+		display: inline-block;
+		margin: 5px 0 10px 0;
+		font-size: 0.9em;
+	}
+}
