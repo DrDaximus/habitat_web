@@ -15,7 +15,8 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
-    @user = User.new(email: params[:email], reference: params[:reference])
+    @project = Project.where(["user_id = ?", current_user.id]).first if current_user
+    @user = User.new(name: params[:name], lastname: params[:lastname], email: params[:email], reference: params[:reference])
   end
 
   # GET /users/1/edit

@@ -17,12 +17,8 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
-
-$banners: #4A4A4A;
-$banner-text: white;
-$main-font: LiSong, "LiSong Pro";
-$second-font: verdana, arial, helvetica, sans-serif;
-$text-hover: #9AC66A;
+@import "rails_bootstrap_forms";
+@import "variables";
 
 a { color: $banners; &:hover {text-decoration: none; color: $text-hover;} }
 

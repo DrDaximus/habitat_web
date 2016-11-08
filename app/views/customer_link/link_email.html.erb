@@ -6,7 +6,7 @@
   <body>
     <p>...to get a full access My Habitat account</p>
 
-    <h1>Hi <%= @project.customer %>,</h1>
+    <h1>Hi <%= @project.first_name %>,</h1>
     <p>
       Thank you for contacting us at Habitat Landscapes.
       
@@ -20,7 +20,7 @@
       Go on... make it personal with your very own Habitat account. Either follow the "sign up to track your enquiry" link on our website, or click the link below.
 
       <br><br>
-      <%= signup_url(:reference => @project.reference) %>
+      <%= signup_url(:reference => @project.reference, :name => @project.first_name, :lastname => @project.last_name, :email => @project.email) %>
     
 			<br><br>
 			The Habitat Team

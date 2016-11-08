@@ -16,7 +16,10 @@ class ProjectsController < ApplicationController
 
   # GET /projects/new
   def new
-    @project = Project.new(user_id: params[:user_id], email: params[:email], added_by: params[:added_by])
+    @user = current_user
+    @project = Project.new
+    
+    #@project = Project.new(user_id: params[:user_id], email: params[:email], added_by: params[:added_by])
   end
 
   # GET /projects/1/edit
@@ -29,9 +32,15 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
     respond_to do |format|
       if @project.save
+        session[:project_id] = @project.id
         send_email
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
-        format.json { render :show, status: :created, location: @project }
+        unless current_user.guest?
+          format.html { redirect_to @project, notice: 'Project was successfully created.' } 
+          format.json { render :show, status: :created, location: @project }
+        else
+          @user = current_user
+          format.html { redirect_to @user } 
+        end
       else
         format.html { render :new }
         format.json { render json: @project.errors, status: :unprocessable_entity }
@@ -95,7 +104,7 @@ class ProjectsController < ApplicationController
    
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:reference, :added_by, :job_type, :stage, :quote, :start_date, :team, :pif, :contract, :handled, :q_sent, :user_id, :email, :customer)
+      params.require(:project).permit(:reference, :added_by, :job_type, :stage, :quote, :start_date, :team, :pif, :contract, :handled, :q_sent, :user_id, :email, :first_name, :last_name, :telephone, :post_code, :budget, :when)
     end
 
     def must_be_admin

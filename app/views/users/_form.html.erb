@@ -11,10 +11,10 @@
     </div>
   <% end %>
 
-  <% if current_user.admin? && current_page?(action: "new")%>
+  <% if current_user && current_user.admin? %>
     <div class="field">
     <%= f.label :role %><br>
-    <%= f.text_field :role, value: :admin %>
+    <%= f.select :role, options_for_role, selected: :admin %>
     </div>
   <% end %>
 
@@ -22,14 +22,15 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
-  <div class="field">
+
+   <div class="field">
     <%= f.label :lastname %><br>
     <%= f.text_field :lastname %>
   </div>
  
    <div class="field">
     <%= f.label :email %><br>
-    <%= f.email_field :email %>
+    <%= f.email_field :email%>
   </div>
 
   <div class="field">

@@ -1,10 +1,27 @@
-<% if current_user && current_user.admin? %>
-	<h1>New Project</h1>
-	IMPORTANT! - In order for the customer to be able to create a My Habitat account, you must enter their email address in the box below.<br><br>
-<% else %>
-	<h1>New Enquiry</h1>
+<%= bootstrap_form_for(@project) do |f| %>
+  <% if @project.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+      <ul>
+      <% @project.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <%= f.hidden_field :user_id, value: (@user.id if current_user.customer?) %> 
+  <%= f.hidden_field :reference, :value => generate_project_reference %>
+  <%= f.hidden_field :added_by %>
+
+  <% if current_user %> 
+    <% if current_user.admin? %>
+      <%= render 'admin_form' , f: f %>
+    <% else %>
+      <%= render 'customer_form' , f: f %>
+    <% end %>
+  <% end %>
+
+  
 <% end %>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', projects_path %>

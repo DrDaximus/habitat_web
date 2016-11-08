@@ -1,3 +1,88 @@
 // Place all the styles related to the projects controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "variables";
+
+#bg-logo {
+	position: absolute;
+	top: 165px;
+	left: 495px;
+	height: 73px;
+	width: 69px;
+	background-image: image-url("trans-logo.png");
+}
+
+.enquiry-heading {
+	letter-spacing: 3px;
+	text-align: center;
+	font-family: $main-font;
+	color: $banners;
+	margin-bottom: 40px;
+	margin-top: 30px;
+}
+
+#main-head {
+	font-size: 2em;
+	margin-bottom: 5px ;
+}
+
+#sub-head{
+	font-size: 0.9em;
+	margin-top: 5px;
+}
+
+.enquiry-sub-heading {
+	letter-spacing: 3px;
+	text-align: center;
+	font-family: $main-font;
+	font-size: 2em;
+	color: $banners;
+	margin: 20px 0 5px 0;
+}
+
+.form-group {
+	margin: 0 0 10px 0!important;
+}
+.form-control {
+	font-size: 0.9em !important;
+	height: 30px !important;
+	border: solid 1px $banners !important;
+	border-radius: 0 !important;
+}
+
+.input-group-addon {
+	cursor: pointer;
+	min-width: 40px;
+	color: white !important;
+	border-radius: 0 !important;
+	border: solid 1px $banners !important;
+	background: $banners !important;
+}
+
+.btn-submit-enquiry {
+	width: 100%;
+	border-radius: 0;
+	border: none;
+	height: 38px;
+	color: white;
+	letter-spacing: 2px;
+	background: $appgreen;
+	margin: 10px 0;
+}
+
+.form-head {
+	letter-spacing: 2px;
+	font-size: 0.8em ;
+	height: 38px;
+	background: $banners;
+	color: white;
+	padding: 12px 0 0 10px;
+	margin-bottom: 10px;
+}
+
+#enquiry-notes {
+	max-width: 100%;
+	min-width: 100%;
+	height: 100px !important;
+}

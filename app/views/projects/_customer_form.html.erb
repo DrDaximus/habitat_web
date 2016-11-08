@@ -1,0 +1,93 @@
+
+<div id="bg-logo"></div>
+<div class="row">
+	<div class="col-md-12"> 
+		<div class="enquiry-heading" id="main-head">New enquiry</div>
+		<div class="enquiry-heading" id="sub-head">Please answer a few basic questions.</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-2"></div>
+	<div class="col-md-4">
+		<div class="form-head"> Personal Details</div>
+		<div class="form-group">
+			<div class="input-group">
+				<div class="input-group-addon">
+					<i class="fa fa-user" title="Please enter your first name"></i>
+				</div>
+				<%= f.text_field :first_name, hide_label: true, placeholder: "first name", :value => (@user.name)   %>
+			</div>
+	  </div>
+		<div class="form-group">
+			<div class="input-group">
+				<div class="input-group-addon">
+					<i class="fa fa-user" title="Please enter your last name"></i>
+				</div>
+ 				<%= f.text_field :last_name, hide_label: true, placeholder: "last name", :value => (@user.lastname)  %>
+ 			</div>
+	  </div>
+		<div class="form-group">
+			<div class="input-group">
+				<div class="input-group-addon">
+					<i class="fa fa-envelope-o" title="Please enter your email address"></i>
+				</div>
+  			<%= f.email_field :email, hide_label: true, placeholder: "email address", :value => (@user.email)  %>
+  		</div>
+	  </div>
+		<div class="form-group">
+			<div class="input-group">
+				<div class="input-group-addon">
+					<i class="fa fa-phone" title="Please enter your telephone number"></i>
+				</div>
+  			<%= f.text_field :telephone, hide_label: true, placeholder: "telephone no." %>
+  		</div>
+	  </div>
+	</div>
+
+	<div class="col-md-4">
+		<div class="form-head">Job Details</div>
+		<div class="form-group">
+			<div class="input-group">
+				<div class="input-group-addon">
+					<i class="fa fa-map-marker" title="Please enter the job post code"></i>
+				</div>
+				<%= f.text_field :post_code, hide_label: true, placeholder: "post code" %>
+			</div>
+	  </div>
+		<div class="form-group">
+			<div class="input-group">
+				<div class="input-group-addon">
+					<i class="fa fa-question" title="Please select the job type that best describes your requirments"></i>
+				</div>
+			  <%= f.select :job_type, options_for_job_type, :prompt => "Select a job type", hide_label: true %>
+			</div>
+	  </div>
+		<div class="form-group">
+			<div class="input-group">
+				<div class="input-group-addon">
+					<i class="fa fa-gbp" title="Please select the range that best describes your budget"></i>
+				</div>
+			  <%= f.select :budget, options_for_budget, :prompt => "Select a budget range", hide_label: true %>
+			</div>
+	  </div>
+		<div class="form-group">
+			<div class="input-group">
+				<div class="input-group-addon">
+					<i class="fa fa-calendar" title="Please select the lead time that best suits your plans"></i>
+				</div>
+			  <%= f.select :when, options_for_when, :prompt => "Select an ideal time to be done", hide_label: true %>
+			</div>
+	  </div>
+	</div>
+	<div class="col-md-2"></div>
+</div>
+
+<div class="row">
+	<div class="col-md-2"></div>
+	<div class="actions col-md-8" id="submit-enquiry">
+		<%= f.text_area :notes, label: "Additional Notes", :id => "enquiry-notes" %>
+	  <%= f.submit value: "Submit", :class => "btn-submit-enquiry" %>
+	</div>
+	<div class="col-md-2"></div>
+</div>
