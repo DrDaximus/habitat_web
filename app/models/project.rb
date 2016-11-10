@@ -27,4 +27,8 @@ class Project < ActiveRecord::Base
 		added_by == "admin"
 	end
 
+	def update_stage(stage)
+		self.update_attributes(:stage => stage)
+	end
+
 end

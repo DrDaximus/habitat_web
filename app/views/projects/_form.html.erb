@@ -17,7 +17,7 @@
 
   <% if current_user %> 
     <% if current_user.admin? %>
-      <%= render 'customer_form' , f: f %>
+      <%= render 'admin_form' , f: f %>
     <% else %>
       <%= render 'customer_form' , f: f %>
     <% end %>

@@ -1,51 +1,57 @@
 <div class="col-md-6">
 		
 	<div class="stack-box highlight">
-		<div class="title">type</div> 
+		<div class="title">Type</div> 
 		<%= @project.job_type %> 
-		<% if @project.design? %>
+		
 			<div class="add-icon" id="design-icon" title="A Design Job">
-				<i class="fa fa-crop fa-2x" ></i><br>
+				<i class="fa <%= icon_check(@project.design) %> fa-2x" ></i><br>
 				Design
 			</div>
-		<% end %>
-		<% if @project.quote? %>
+		
 			<div class="add-icon" id="quoted-icon" title="Quote Generated">
-				<i class="fa fa-check fa-2x"></i><br>
-				Quoted
+				<i class="fa <%= icon_check(@project.deposit) %> fa-2x"></i><br>
+				Deposit
 			</div>
-		<% end %>
-		<% if @project.contract? %>
+	
 			<div class="add-icon" id="contract-icon" title="Contract Signed">
-				<i class="fa fa-check fa-2x" ></i><br>
+				<i class="fa <%= icon_check(@project.contract) %> fa-2x" ></i><br>
 				Contract
 			</div>
-		<% end %>
+	
 	</div>
-
 	<div class="stack-box highlight">
-		<div class="title">budget</div> 
+		<div class="title">Budget</div> 
 		<%= budget(@project.budget) %>
 	</div>
 
 	<div class="stack-box <%= "highlight" if @project.handled %>" id="handler-box">
-		<div class="title">handler</div> 
+		<div class="title">Surveyor</div> 
 		<%= test_handler(@project.handled) %>
 	</div>
 
-	<div class="stack-box <%= "highlight" if @project.quote > 0 %>" id="stack-box">
-		<div class="title">quote</div> 
+	<div class="stack-box <%= "highlight" if @project.quote %>" id="stack-box">
+		<div class="title">Quote</div> 
 		<%= test_quote(@project.quote) %>
 	</div>
 
 	<div class="stack-box <%= "highlight" if @project.team %>" id="team-box">
-		<div class="title">team</div> 
+		<div class="title">Team</div> 
 		<%= test_team(@project.team) %>
 	</div>
 
 	<div class="stack-box <%= "highlight" if @project.start_date %>" id="start-box">
-		<div class="title">start date</div> 
+		<div class="title">Start date</div> 
 		<%= test_start(@project.start_date) %>
 	</div>
+
+	<% if current_user.admin? %>
+		<%= link_to edit_project_path(@project), remote: true do %>
+			<div class="stack-box" id="update-stack">
+				Update Project
+			</div>
+		<% end %>
+	<% end %>
+
 
 </div>

@@ -1,1 +1,63 @@
-Admin Form
+<%= bootstrap_form_for(@project) do |f| %>
+ 
+ 	<div id="modal-wrapper">
+ 
+	 	<div class="form-group">
+			<div class="input-group">
+				<div class="input-group-addon modal-addon">
+					Surveyor
+				</div>
+	 	 	<%= f.select :handled, @handlers.all.collect {|a| a.name}, prompt: "Who is handling the enquiry?", hide_label: true %>
+		</div>
+		</div>
+
+	  <div class="form-group">
+ 			<%= f.check_box :q_sent, label: "Quote Sent?"  %>
+	  </div>
+
+	   <div class="form-group">
+ 			<%= f.check_box :contract, label: "Contract Signed?"  %>
+	  </div>
+
+	  <div class="form-group">
+ 			<%= f.check_box :deposit, label: "Deposit Paid?"  %>
+	  </div>
+
+
+	  	<div class="form-group">
+			<div class="input-group">
+				<div class="input-group-addon modal-addon">
+					Quote
+				</div>
+ 				<%= f.number_field :quote, hide_label: true, placeholder: "Quote Amount", id: "modal-field" %>
+ 			</div>
+	  </div>
+
+		<div class="form-group">
+			<div class="input-group">
+				<div class="input-group-addon modal-addon">
+					Team
+				</div>
+		 		<%= f.select :team, options_for_team, :prompt => "Which team has been allocated?", hide_label: true %>
+			</div>
+		</div>
+
+		<div class="form-group">
+		 	<%= f.date_select :start_date, include_blank: true %>
+		</div>
+
+	  <div class="form-group">
+ 			<%= f.check_box :complete, label: "Work Complete?"  %>
+	  </div>
+
+	  <div class="form-group">
+ 			<%= f.check_box :pif, label: "Paid in Full?" %>
+	  </div>
+	
+	</div>
+
+	<div class="modal-footer">
+		<%= f.submit value: "Update", :class => "btn-update-project" %>
+	</div>
+
+<% end %>

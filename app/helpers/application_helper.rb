@@ -1,5 +1,9 @@
 module ApplicationHelper
 
+	def icon_check(condition)
+		condition ? "fa-check" : "fa-times"
+	end
+
 	# UK currency format
 	def to_cur(number)
 		number_to_currency(number, :unit => "£")
@@ -58,7 +62,6 @@ module ApplicationHelper
 
 	def options_for_team
 		[
-			["TBC"],
 			["Craig's Team", 1],
 			["Lee's Team", 2],
 			["Team 3", 3]

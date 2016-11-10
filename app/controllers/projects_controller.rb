@@ -25,6 +25,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
+    @handlers = User.where(["role = ?", 0])
   end
 
   # POST /projects
@@ -54,6 +55,7 @@ class ProjectsController < ApplicationController
   def update
     respond_to do |format|
       if @project.update(project_params)
+        check_stage
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
         format.json { render :show, status: :ok, location: @project }
       else
@@ -85,6 +87,22 @@ class ProjectsController < ApplicationController
 
   private
 
+    def check_stage
+      if @project.complete?
+        @stage = 5
+        @project.update_stage(@stage)
+      elsif @project.start_date && Date.today > @project.start_date
+        @stage = 4
+        @project.update_stage(@stage)
+      elsif @project.start_date
+        @stage = 3
+        @project.update_stage(@stage)
+      elsif @project.handled
+        @stage = 2
+        @project.update_stage(@stage)
+      end
+    end
+
     def send_email
       if current_user.customer?
         @user = User.find(@project.user_id)
@@ -105,7 +123,7 @@ class ProjectsController < ApplicationController
    
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:reference, :added_by, :job_type, :stage, :quote, :start_date, :team, :pif, :contract, :handled, :q_sent, :user_id, :email, :first_name, :last_name, :telephone, :post_code, :budget, :when, :design)
+      params.require(:project).permit(:reference, :added_by, :job_type, :stage, :quote, :start_date, :team, :pif, :contract, :handled, :q_sent, :user_id, :email, :first_name, :last_name, :telephone, :post_code, :budget, :when, :design, :notes, :complete, :deposit)
     end
 
     def must_be_admin

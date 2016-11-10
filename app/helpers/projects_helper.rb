@@ -14,16 +14,16 @@ module ProjectsHelper
   end
 
   def test_handler(handler)
-  	handler ? handler : "TBD"
+  	handler ? handler : "TBC"
   end	
   def test_quote(quote)
-  	quote > 0 ? to_cur(quote) : "TBD" 
+  	quote ? to_cur(quote) : "TBC" 
   end
   def test_team(team)
-  	team ? team : "TBD" 
+  	team ? team : "TBC" 
   end
   def test_start(start)
-  	start ? start.strftime("%a %-d %b %Y") : "TBD" 
+  	start ? start.strftime("%a %-d %b %Y") : "TBC" 
   end
 
   def budget(budget)

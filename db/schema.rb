@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161110151355) do
+ActiveRecord::Schema.define(version: 20161110172210) do
 
   create_table "projects", force: :cascade do |t|
     t.string   "reference"
     t.string   "added_by",   default: "Unknown"
     t.string   "job_type"
     t.integer  "stage",      default: 1
-    t.decimal  "quote",      default: 0.0
+    t.decimal  "quote"
     t.date     "start_date"
     t.integer  "team"
     t.boolean  "pif",        default: false
@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(version: 20161110151355) do
     t.datetime "updated_at",                     null: false
     t.string   "email"
     t.integer  "user_id"
-    t.string   "customer"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "telephone"
@@ -38,6 +37,8 @@ ActiveRecord::Schema.define(version: 20161110151355) do
     t.integer  "when"
     t.text     "notes"
     t.boolean  "design"
+    t.boolean  "complete"
+    t.boolean  "deposit"
   end
 
   create_table "users", force: :cascade do |t|

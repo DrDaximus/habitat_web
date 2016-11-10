@@ -21,6 +21,11 @@
 @import "variables";
 @import "simple-line-icons";
 
+select {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+}
+
 a { color: $banners; &:hover {text-decoration: none; color: $text-hover;} }
 
 body {
@@ -75,9 +80,9 @@ section {
 
 .bold-bar { 
 	font-family: $second-font; 
-	font-weight: bold;
+	font-weight: 600;
 	font-size: 1.3em; 
-	span {margin-top: 6px;}
+	span {margin-top: 8px;}
 }
 
 .notification {
