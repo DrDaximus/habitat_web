@@ -1,0 +1,16 @@
+// Place all the styles related to the teams controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "variables";
+
+.team-wrapper {
+	width: 50%;
+	margin: 20px auto;
+}
+
+table { width: 100%; }
+.team-opt { width: 10%; }
+#team-no { width: 10%; }
+#team-name { width: 40%; }
+#team-leader { width: 40%; }

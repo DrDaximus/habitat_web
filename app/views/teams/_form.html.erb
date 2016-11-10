@@ -1,0 +1,45 @@
+<%= bootstrap_form_for(@team) do |f| %>
+
+  <% if @team.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@team.errors.count, "error") %> prohibited this team from being saved:</h2>
+
+      <ul>
+      <% @team.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-addon modal-addon">
+          Name
+        </div>
+        <%= f.text_field :team_name, placeholder: "Name this team", hide_label: true %>
+      </div>
+    </div>
+ 
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-addon modal-addon">
+          Number
+        </div>
+        <%= f.number_field :team_no, placeholder: "Number this team", hide_label: true %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-addon modal-addon">
+          Leader
+        </div>
+        <%= f.collection_select :user_id, admin.all, :id, :name, :prompt => "Select a team leader", hide_label: true %>
+      </div>
+    </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

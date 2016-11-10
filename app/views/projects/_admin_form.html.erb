@@ -7,7 +7,7 @@
 				<div class="input-group-addon modal-addon">
 					Surveyor
 				</div>
-	 	 	<%= f.select :handled, @handlers.all.collect {|a| a.name}, prompt: "Who is handling the enquiry?", hide_label: true %>
+	 	 	<%= f.select :handled, admin.all.collect {|a| a.name}, prompt: "Who is handling the enquiry?", hide_label: true %>
 		</div>
 		</div>
 
@@ -38,7 +38,7 @@
 				<div class="input-group-addon modal-addon">
 					Team
 				</div>
-		 		<%= f.select :team, options_for_team, :prompt => "Which team has been allocated?", hide_label: true %>
+		 		<%= f.collection_select :team_id, Team.all, :id, :team_name, :prompt => "Which team has been allocated?", hide_label: true %>
 			</div>
 		</div>
 

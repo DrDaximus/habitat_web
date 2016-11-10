@@ -1,0 +1,32 @@
+<div id="teams-bar" class="bar-style bar-thin add-margin bold-bar">
+  <span>Habitat Teams</span>
+</div>
+  
+<div class="team-wrapper">
+<table class="table">
+  <thead>
+    <tr>
+      <th>No.</th>
+      <th>Name</th>
+      <th>Leader</th>
+      <th colspan="3">Options</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @teams.order(team_no: :asc).each do |team| %>
+      <tr>
+        <td id="team-no"><%= team.team_no %></td>
+        <td id="team-name"><%= team.team_name %></td>
+        <td id="team-leader"><%= team.user.name %></td>
+        <td class="team-opt"><%= link_to 'Edit', edit_team_path(team) %></td>
+        <td class="team-opt"><%= link_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Create New Team', new_team_path, class: "btn btn-success" %>
+</div>

@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 	has_secure_password(validations: false)
 
 	has_many :projects
+  has_many :teams
 
 	enum role: [:admin, :customer, :guest]
 

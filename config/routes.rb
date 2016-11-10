@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :teams
   get 'signup', to: 'users#new', as: 'signup'
   get 'signin', to: 'sessions#new', as: 'signin'
   get 'logout', to: 'sessions#destroy', as: 'logout'

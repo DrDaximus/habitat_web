@@ -20,7 +20,7 @@ module ProjectsHelper
   	quote ? to_cur(quote) : "TBC" 
   end
   def test_team(team)
-  	team ? team : "TBC" 
+  	team ? team.team_name : "TBC" 
   end
   def test_start(start)
   	start ? start.strftime("%a %-d %b %Y") : "TBC" 

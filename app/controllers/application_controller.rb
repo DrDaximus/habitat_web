@@ -13,4 +13,9 @@ class ApplicationController < ActionController::Base
   def authorise
   	redirect_to signin_url, alert: "Not Authorised" if current_user.nil?
   end
+
+  def admin
+    @admin = User.where(["role = ?", 0])
+  end
+  helper_method :admin
 end

@@ -4,17 +4,17 @@
 		<div class="title">Type</div> 
 		<%= @project.job_type %> 
 		
-			<div class="add-icon" id="design-icon" title="A Design Job">
+			<div class="add-icon" id="design-icon" title="Design Job?">
 				<i class="fa <%= icon_check(@project.design) %> fa-2x" ></i><br>
 				Design
 			</div>
 		
-			<div class="add-icon" id="quoted-icon" title="Quote Generated">
+			<div class="add-icon" id="quoted-icon" title="Deposit Paid?">
 				<i class="fa <%= icon_check(@project.deposit) %> fa-2x"></i><br>
 				Deposit
 			</div>
 	
-			<div class="add-icon" id="contract-icon" title="Contract Signed">
+			<div class="add-icon" id="contract-icon" title="Contract Signed?">
 				<i class="fa <%= icon_check(@project.contract) %> fa-2x" ></i><br>
 				Contract
 			</div>
@@ -52,6 +52,14 @@
 			</div>
 		<% end %>
 	<% end %>
+
+	<%= link_to edit_project_path(@project) do %>
+		<div class="stack-box" id="update-stack">
+			View Documents
+		</div>
+	<% end %>
+	
+
 
 
 </div>

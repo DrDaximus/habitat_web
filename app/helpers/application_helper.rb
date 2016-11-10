@@ -60,14 +60,6 @@ module ApplicationHelper
 		]
 	end
 
-	def options_for_team
-		[
-			["Craig's Team", 1],
-			["Lee's Team", 2],
-			["Team 3", 3]
-		]
-	end
-
 	def new_project_links
 		if current_user && current_user.admin?
 			link_to '| new project', new_project_path(:added_by => current_user.role)

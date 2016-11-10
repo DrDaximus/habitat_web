@@ -1,6 +1,7 @@
 class Project < ActiveRecord::Base
 
 	belongs_to :user # Only if customer registers their account.  
+	belongs_to :team # Only if customer registers their account.  
 
 	# If no user logged in, check if that email already exists in the customer database.
 	validate :check_existing_customer, unless: :user_id?, on: :create
