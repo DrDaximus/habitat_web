@@ -15,7 +15,7 @@
 		<% if current_user %>
 			Logged in as <strong><%= current_user.regname %></strong> |
 			<% if current_user.guest? %>
-				<%= upgrade_account_link %>
+				
 			<% else %>
 				<%= link_to "Sign Out", logout_path %>
 			<% end %>
@@ -26,6 +26,13 @@
 		<% end %>
 	</div>
 </header>
+
+<% if notice %>
+	<div class="notification bar-style bar-thin" id="notice"><%= notice %></div>
+<% end %>
+<% if alert %>
+	<div class="notification bar-style bar-thin" id="alert"><%= alert %></div>
+<% end %>
 
 <% unless current_page?(controller: 'welcome') %>
 	<section>

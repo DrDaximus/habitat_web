@@ -2,27 +2,12 @@
   <span><%= @project.reference %></span>
 </div>
 
-<p id="notice"><%= notice %></p>
+<%= render 'project_timeline' %>
 
-<% if current_user.admin? %>
-  <%= link_to "Invite Customer", send_invite_project_path(@project) %>
-<% end %>
+<div class="divide-line"></div>
 
-<p>
-  <strong>email:</strong>
-  <%= @project.email %>
-</p>
-
-<p>
-  <strong>Added by:</strong>
-  <%= @project.added_by %>
-</p>
-
-<p>
-  <strong>Job type:</strong>
-  <%= @project.job_type %>
-</p>
-
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+<div class="info-wrapper row">
+	<%= render 'project_info' %>
+	<%= render 'project_stack' %>
+</div>
 

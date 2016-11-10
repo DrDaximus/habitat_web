@@ -4,7 +4,7 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Hi <%= @project.customer %>,</h1>
+    <h1>Hi <%= @project.first_name %>,</h1>
     <p>
       Thank you for contacting us at Habitat Landscapes.
       
@@ -18,7 +18,7 @@
       Follow this link to quickly create one. 
       
       <br><br>
-      <%= new_user_url(:email => @project.email, :reference => @project.reference) %>
+      <%= signup_url(:reference => @project.reference, :name => @project.first_name, :lastname => @project.last_name, :email => @project.email) %>
     
 			<br><br>
 			The Habitat Team

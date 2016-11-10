@@ -1,0 +1,59 @@
+
+	<div class="col-md-6">
+		<div class="info-item" id="added_by">
+			<div class="title">Added by:</div> 
+			<%= @project.added_by %>
+		</div>
+		<div class="info-item" id="added-on">
+			<div class="title"><small>on:</small></div> 
+			<span><%= @project.created_at.strftime("%d %b %y") %></span>
+		</div>
+		<div class="info-item" id="added-on">
+			<div class="title"><small>ideal start:</small></div> 
+			<span><%= idealwhen(@project.when) %></span>
+		</div>
+		<div class="divide-line"></div>
+		<div class="info-item" id="firstname">
+			<div class="title">First Name:</div> 
+			<%= firstname(@project, @user) %>
+		</div>
+		<div class="info-item" id="lastname">
+			<div class="title">Last Name:</div> 
+			<%= lastname(@project, @user) %>
+		</div>
+		<div class="divide-line"></div>
+
+		<div class="info-item" id="address">
+			<div class="title">Address:</div> 
+			<%= @project.post_code %>
+			<br>
+			<br>
+			<br>
+			<br>
+		</div>
+		<div class="divide-line"></div>
+		<div class="info-item" id="telephone">
+			<div class="title">Telephone:</div> 
+			<%= telephone(@project, @user) %>
+		</div>
+		<div class="info-item" id="email">
+			<div class="title">email:</div> 
+			<%= email(@project, @user) %>
+		</div>
+		<div class="divide-line"></div>
+		<div class="info-item" id="role">
+			<div class="title">Registered:</div> 
+				<% unless registered? %> 
+					<%= invite_button(@project) %><br>
+				<% else %>
+					<%= @user.created_at.strftime("%b %Y") %>
+				<% end %>
+			</div>
+		<div class="divide-line"></div>
+		<div class="info-item" id="notes">
+			<div class="title">Notes:</div>
+			<div class="enquiry-notes">
+				<%= @project.notes %>
+			</div>	
+		</div>
+	</div>

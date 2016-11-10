@@ -4,6 +4,130 @@
 
 @import "variables";
 
+$timeline-color: #EBEBEB;
+$title-color: #9B9B9B;
+
+.divide-line {
+	width: 100%;
+	height: 1px;
+	background: $banners;
+	margin: 10px 0;
+}
+
+
+//-----> Show Job
+
+#timeline-line {
+	position: absolute;
+	top: 255px;
+	left: 250px;
+	height: 4px;
+	width: 600px;
+	background: $timeline-color;
+}
+
+.timeline-wrapper {
+	margin: 40px auto !important;
+	width: 900px;
+	height: 110px;
+}
+
+.end { height: 100%; }
+
+.timeline-item {
+	font-family: $second-font;
+	color: $timeline-color;
+	height: 100%;
+	text-align: center;
+}
+
+.icon { font-size: 1.8em }
+
+.circle {
+	color: white;
+	margin: 0 auto;
+	height: 80px;
+	width: 80px;
+	border-radius: 100%;
+	border: solid 4px white;
+	background: $timeline-color;	
+	padding: 24px 0;
+}
+
+.active {
+	.circle { background: $hab-light-green; }
+	color: $title-color;
+}   
+
+//-----> User-data
+
+.info-item {
+	letter-spacing: 1px;
+	font-size: 1em;
+	font-family: $second-font;
+	font-weight: 800;
+	color: $banners;
+	.title { 
+		float: left; 
+		width: 120px; 
+		color: $title-color;
+	}
+	.invite-btn { 
+		padding: 3px 10px; 
+		border-radius: 20px; 
+		background: $hab-light-green; 
+		color: white;
+		margin-top: -3px;
+		&:hover { cursor: pointer; color: $red;}
+		float: right;
+	}
+}
+#added-on { span {color: $red; font-size: 0.8em} }
+#lastname, #email { padding: 0; }
+
+.stack-box {
+	font-family: $second-font;
+	font-weight: bold;
+	font-size: 1.3em;
+	text-align: center;
+	padding-top: 13px;
+	height: 50px;
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 6px;
+	background: $timeline-color;
+	border-radius: 15px;
+	color: #CECECE;
+	.title { position: absolute; padding: 3px 0 0 10px; font-size: 0.7em; color: white;}
+}
+
+.highlight { color: $red; }
+
+.add-icon { 
+	cursor: pointer;
+	font-weight: normal;
+	padding-top: 10px;
+	color: white;
+	font-size: 10px;
+	top: 5px;
+	position: absolute; 
+	height: 55px; 
+	width: 55px; 
+	border-radius: 15px; 
+	background: $red;
+}
+#design-icon {
+	left: -68px;
+}
+#quoted-icon {
+	left: -130px;
+}
+#contract-icon {
+	left: -192px;
+}
+
+//-----> Enquiry Form
+
 #bg-logo {
 	position: absolute;
 	top: 165px;
@@ -81,7 +205,7 @@
 	margin-bottom: 10px;
 }
 
-#enquiry-notes {
+.enquiry-notes {
 	max-width: 100%;
 	min-width: 100%;
 	height: 100px !important;

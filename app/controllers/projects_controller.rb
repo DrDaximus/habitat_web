@@ -12,12 +12,13 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    @user = User.find(@project.user_id) if @project.user_id
   end
 
   # GET /projects/new
   def new
     @user = current_user
-    @project = Project.new
+    @project = Project.new(:added_by [@user.role])
     
     #@project = Project.new(user_id: params[:user_id], email: params[:email], added_by: params[:added_by])
   end
@@ -104,7 +105,7 @@ class ProjectsController < ApplicationController
    
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:reference, :added_by, :job_type, :stage, :quote, :start_date, :team, :pif, :contract, :handled, :q_sent, :user_id, :email, :first_name, :last_name, :telephone, :post_code, :budget, :when)
+      params.require(:project).permit(:reference, :added_by, :job_type, :stage, :quote, :start_date, :team, :pif, :contract, :handled, :q_sent, :user_id, :email, :first_name, :last_name, :telephone, :post_code, :budget, :when, :design)
     end
 
     def must_be_admin

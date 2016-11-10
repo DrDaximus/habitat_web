@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161106172742) do
+ActiveRecord::Schema.define(version: 20161110151355) do
 
   create_table "projects", force: :cascade do |t|
     t.string   "reference"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20161106172742) do
     t.integer  "team"
     t.boolean  "pif",        default: false
     t.boolean  "contract",   default: false
-    t.boolean  "handled",    default: false
+    t.string   "handled"
     t.boolean  "q_sent",     default: false
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20161106172742) do
     t.integer  "budget"
     t.integer  "when"
     t.text     "notes"
+    t.boolean  "design"
   end
 
   create_table "users", force: :cascade do |t|

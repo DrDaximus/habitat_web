@@ -19,6 +19,7 @@
 @import "bootstrap";
 @import "rails_bootstrap_forms";
 @import "variables";
+@import "simple-line-icons";
 
 a { color: $banners; &:hover {text-decoration: none; color: $text-hover;} }
 
@@ -74,8 +75,17 @@ section {
 
 .bold-bar { 
 	font-family: $second-font; 
+	font-weight: bold;
 	font-size: 1.3em; 
 	span {margin-top: 6px;}
 }
 
-
+.notification {
+  margin-bottom: 1px;
+  height: 30px;
+  color: white;
+  padding-top: 5px;
+  font-weight: bold;
+}
+#alert { background: $red; }
+#notice { background: $hab-light-green; }

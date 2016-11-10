@@ -1,5 +1,10 @@
 module ApplicationHelper
 
+	# UK currency format
+	def to_cur(number)
+		number_to_currency(number, :unit => "£")
+	end
+
 	def options_for_role
 		[
 			["admin"],
@@ -77,7 +82,6 @@ module ApplicationHelper
 	end
 
 	def user_menu
-
 		if current_user && current_user.admin?
     	render 'shared/admin_menu_bar'
   	else  

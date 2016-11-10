@@ -1,0 +1,36 @@
+<div class="row timeline-wrapper">
+		<div id="timeline-line"></div>
+		<div class="end col-md-1"></div>
+		<div class="timeline-item col-md-2 <%= "active" if @project.stage == 1 %>" id="enquiry">
+			<div class="circle">
+				<i class="icon-note icon" title="Job at enquiry stage"></i>
+			</div>
+			<div class="stage-desc">Enquiry</div>
+		</div>
+		<div class="timeline-item col-md-2 <%= "active" if @project.stage == 2 %>" id="quoting">
+			<div class="circle">
+				<i class="icon-calculator icon" title="A quote is being compiled"></i>
+			</div>
+			<div class="stage-desc">Quoting</div>
+		</div>
+		<div class="timeline-item col-md-2 <%= "active" if @project.stage == 3 %>" id="booked">
+			<div class="circle">
+				<i class="icon-calendar icon" title="Quote has been accepted and a date for work has been booked"></i>
+			</div>
+			<div class="stage-desc">Booked</div>
+		</div>
+		<div class="timeline-item col-md-2 <%= "active" if @project.stage == 4 %>" id="started">
+			<div class="circle">
+				<i class="icon-rocket icon" title="Job is currently active and work is underway"></i>
+			</div>
+			<div class="stage-desc">Active</div>
+		</div>
+		<div class="timeline-item col-md-2 <%= "active" if @project.stage == 5 %>" id="complete">
+			<div class="circle">
+				<i class="icon-check icon" title="Work has been completed"></i>
+			</div>
+			<div class="stage-desc">Complete</div>
+		</div>
+		<div class="end col-md-1">
+		</div>
+	</div>
