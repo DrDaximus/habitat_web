@@ -6,6 +6,8 @@
 
 $timeline-color: #EBEBEB;
 $title-color: #9B9B9B;
+$midgrey: #CECECE;
+$blue: #5CAED1;
 
 .divide-line {
 	width: 100%;
@@ -86,7 +88,7 @@ $title-color: #9B9B9B;
 		float: right;
 	}
 }
-#added-on { span {color: $red; font-size: 0.8em} }
+#added-on { span {color: $blue; font-size: 0.8em} }
 #lastname, #email { padding-top: 2px; }
 
 .stack-box {
@@ -100,27 +102,30 @@ $title-color: #9B9B9B;
 	margin: 0 auto;
 	margin-top: 8px;
 	background: $timeline-color;
-	border-radius: 15px;
-	color: #CECECE;
-	.title { position: absolute; padding: 3px 0 0 10px; font-size: 0.7em; color: #CECECE;}
+	border-radius: 10px;
+	color: $midgrey;
+	.title { position: absolute; padding: 3px 0 0 10px; font-size: 0.7em; color: $midgrey;}
 }
+.highlight { color: $blue; }
 
-#update-stack { background: #5CAED1; color: white;}
-.highlight { color: #5CAED1; }
+.stack-button { background: $blue; color: white;} 
 
 .add-icon { 
 	cursor: pointer;
 	font-weight: normal;
 	padding-top: 10px;
-	color: white;
+	color: $red;
 	font-size: 10px;
-	top: 5px;
+	top: 3px;
 	position: absolute; 
 	height: 55px; 
 	width: 55px; 
 	border-radius: 15px; 
-	background: $red;
+	border: solid 2px $red;
+	
 }
+.check { border: solid 2px $hab-light-green; color: $hab-light-green;}
+
 #design-icon {
 	left: -68px;
 }

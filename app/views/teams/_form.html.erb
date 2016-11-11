@@ -2,13 +2,7 @@
 
   <% if @team.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@team.errors.count, "error") %> prohibited this team from being saved:</h2>
-
-      <ul>
-      <% @team.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+      <h2><%= pluralize(@team.errors.count, "error") %> prevented this team from being saved</h2>
     </div>
   <% end %>
 
