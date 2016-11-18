@@ -31,7 +31,8 @@ class ProjectsController < ApplicationController
   end
 
   def search
-    @project = Project.where(["reference = ?", params[:search]]).first
+    @ref = "HAB" + params[:search]
+    @project = Project.where(["reference = ?", @ref]).first
     if @project
       redirect_to project_path(@project.id)
     else

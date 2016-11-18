@@ -31,6 +31,7 @@ gem 'simple-line-icons-rails'
 gem 'uk_postcode', '~> 2.1.0'
 gem 'geocoder'
 gem 'gmaps4rails'
+gem 'jquery-turbolinks'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'

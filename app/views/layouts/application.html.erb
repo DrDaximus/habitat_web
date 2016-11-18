@@ -11,20 +11,27 @@
 	<div id="logo">
 		<%= image_tag("habitat-logo.png", :alt => "Habitat Logo") %>
 	</div>
-	<div id="signout">
+	<div id="search-signout">
 		<% if current_user %>
-			Logged in as <strong><%= current_user.regname %></strong> |
-			<% if current_user.guest? %>
-				
-			<% else %>
-				<%= link_to "Sign Out", logout_path %>
-			<% end %>
+			<div id="search-form">
+				<%= render 'layouts/search_form' %>
+			</div>
+			<div id="signout">
+				Logged in as <strong><%= current_user.regname %></strong> |
+				<% if current_user.guest? %>
+
+				<% else %>
+					<%= link_to "Sign Out", logout_path %>
+				<% end %>
+			</div>
 		<% else %>
-			<%= link_to new_user_path do %>
-				Click here to register a <strong>My Habitat</strong> account.
-			<% end %>
+			<div id="search-form"></div>
+			<div id="signout "></div>
+				<%= link_to new_user_path do %>
+					Click here to register a <strong>My Habitat</strong> account.
+				<% end %>
 		<% end %>
-	</div>
+
 </header>
 
 <% if notice %>

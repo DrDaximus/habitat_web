@@ -7,11 +7,7 @@
 		<%= link_to 'projects', projects_path %> |
 		<%= link_to 'users', users_path %> |
 		<%= link_to 'teams', teams_path %>
-		<%= new_project_links %> |
-		<%= form_tag search_path, :method => 'get' do %>
-	  	<%= text_field_tag :search, params[:search] %>
-	  	<%= submit_tag "Search", :name => nil %>
-		<% end %>
+		<%= new_project_links %>
 	</span>
 </div>
 

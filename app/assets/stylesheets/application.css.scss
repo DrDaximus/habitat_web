@@ -43,11 +43,22 @@ header {
 		width: 132px;
 		height: 41px;
 	}
-	#signout {
+	#search-signout {
+		margin-top: -40px;
 		float: right;
-		text-align: right;
-		padding-top: 30px;
-	}
+		#search-form {
+			width: 180px;
+			text-align: right;
+			font-family: $second-font;
+			.search-field { height: 25px !important; padding: 1px 5px 0 5px;}
+			#search-btn { background: $hab-light-green; color: white; height: 25px; padding: 0 10px; margin-top: 2px;}
+		}
+		#signout {
+			margin-top: -12px;
+			text-align: right;
+		}
+	}	
+	
 }
 
 section {
