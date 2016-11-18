@@ -1,0 +1,13 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+		<div class="modal-header">
+			<h4>Project Search</h4>
+		</div>
+		<% form_tag project_path(params[:search]), :method => 'get' do %>
+	  	<p>
+	    	<%= text_field_tag :search, params[:search] %>
+	    	<%= submit_tag "Search", :name => nil %>
+	  	</p>
+		<% end %>
+	</div>
+</div>

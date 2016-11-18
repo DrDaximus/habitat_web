@@ -1,15 +1,4 @@
 <%= bootstrap_form_for(@project) do |f| %>
-  <% if @project.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
-
-      <ul>
-      <% @project.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
   
   <%= f.hidden_field :user_id, value: (@user.id if current_user.customer?) %> 
   <%= f.hidden_field :reference, :value => generate_project_reference %>
@@ -17,7 +6,7 @@
 
   <% if current_user %> 
     <% if current_user.admin? %>
-      <%= render 'admin_form' , f: f %>
+      <%= render 'customer_form' , f: f %>
     <% else %>
       <%= render 'customer_form' , f: f %>
     <% end %>

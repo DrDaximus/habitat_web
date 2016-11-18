@@ -5,15 +5,31 @@ class Project < ActiveRecord::Base
 
 	# If no user logged in, check if that email already exists in the customer database.
 	validate :check_existing_customer, unless: :user_id?, on: :create
+	validate :check_pc
 
 	# If there is a customer_id present on creation of a new project, it implies that an eamil already exists and has not been enetered, so is not required for validation
-	validates :email, presence: true, unless: :added_by_admin?, on: :create
-	validates :job_type, presence: true
+	validates :email, :first_name, :last_name, :telephone, :post_code, :job_type, :budget, :when, presence: true, on: :create
+
+	geocoded_by :post_code  
+	after_validation :geocode          # auto-fetch coordinates
 
 	# When customer creates an acc, update project with id.
 	def update_user_id(project, id)
 		project.update_attributes(:user_id => id)
 	end
+
+	def post_code=(str)
+  	super UKPostcode.parse(str).to_s
+	end
+
+	def check_pc
+		unless self.post_code.blank?
+			ukpc = UKPostcode.parse(self.post_code)
+	    unless ukpc.full_valid?
+	    	errors.add(:post_code, "not a valid UK postcode")
+	    end
+    end
+  end
 
 	# Check to see if the email address entered for a new enquiry already exists in the customer database.
 	def check_existing_customer

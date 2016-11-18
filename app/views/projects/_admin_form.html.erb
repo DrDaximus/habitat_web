@@ -38,7 +38,7 @@
 				<div class="input-group-addon modal-addon">
 					Team
 				</div>
-		 		<%= f.collection_select :team_id, Team.all, :id, :team_name, :prompt => "Which team has been allocated?", hide_label: true %>
+		 		<%= f.collection_select :team_id, Team.all, :id, :team_name, :prompt => "Which team has been allocated?", hide_label: true, include_blank: true %>
 			</div>
 		</div>
 

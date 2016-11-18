@@ -28,6 +28,9 @@ gem 'font-awesome-rails', '~> 4.5', '>= 4.5.0.1'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'bootstrap_form'
 gem 'simple-line-icons-rails'
+gem 'uk_postcode', '~> 2.1.0'
+gem 'geocoder'
+gem 'gmaps4rails'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'

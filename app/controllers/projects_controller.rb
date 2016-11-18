@@ -7,6 +7,36 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = Project.all
+    @quoting = Project.where(["stage = ?", 2])
+    @enq = Project.where(["stage = ?", 1])
+    @quoting_hash = Gmaps4rails.build_markers(@quoting) do |project, marker|
+      marker.lat project.latitude
+      marker.lng project.longitude
+      marker.picture({
+        "url" => ActionController::Base.helpers.asset_path('quote_marker.png'),
+        "width" => 22,
+        "height" => 36
+        })
+    end 
+    @enq_hash = Gmaps4rails.build_markers(@enq) do |project, marker|
+      marker.lat project.latitude
+      marker.lng project.longitude
+      marker.picture({
+        "url" => ActionController::Base.helpers.asset_path('enq_marker.png'),
+        "width" => 22,
+        "height" => 36
+        })
+    end 
+    
+  end
+
+  def search
+    @project = Project.where(["reference = ?", params[:search]]).first
+    if @project
+      redirect_to project_path(@project.id)
+    else
+      redirect_to :back, alert: "No project found with that reference!"
+    end
   end
 
   # GET /projects/1
@@ -100,6 +130,8 @@ class ProjectsController < ApplicationController
       elsif @project.handled
         @stage = 2
         @project.update_stage(@stage)
+      else
+        @project.update_stage(1)
       end
     end
 
@@ -123,7 +155,7 @@ class ProjectsController < ApplicationController
    
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:reference, :added_by, :job_type, :stage, :quote, :start_date, :team_id, :pif, :contract, :handled, :q_sent, :user_id, :email, :first_name, :last_name, :telephone, :post_code, :budget, :when, :design, :notes, :complete, :deposit)
+      params.require(:project).permit(:reference, :added_by, :job_type, :stage, :quote, :start_date, :team_id, :pif, :contract, :handled, :q_sent, :user_id, :email, :first_name, :last_name, :telephone, :post_code, :budget, :when, :design, :notes, :complete, :deposit, :longitude, :latitude)
     end
 
     def must_be_admin

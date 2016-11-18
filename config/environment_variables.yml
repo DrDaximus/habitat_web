@@ -1,0 +1,4 @@
+development:
+  GMAPS_KEY:  AIzaSyBLDKPpoh6XmFyPgsQ829rMPkfEY2_RpYY
+production:
+  GMAPS_KEY:  AIzaSyBLDKPpoh6XmFyPgsQ829rMPkfEY2_RpYY
