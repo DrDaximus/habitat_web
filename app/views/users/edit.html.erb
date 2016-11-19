@@ -2,7 +2,10 @@
   <span>edit <%= @user.role %> account</span>
 </div>
 
+<div class="form-wrapper">
 <%= render 'form' %>
+</div>
 
 <%= link_to 'Show', @user %> |
 <%= link_to 'Back', users_path %>
+

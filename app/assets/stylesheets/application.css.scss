@@ -26,7 +26,10 @@ select {
   -webkit-border-radius: 0px;
 }
 
-a { color: $banners; &:hover {text-decoration: none; color: $text-hover;} }
+.white-text {color: white;}
+a { color: $banners;  &:hover {text-decoration: none; color: $text-hover;} }
+
+
 
 body {
 	margin: 0;
@@ -51,7 +54,7 @@ header {
 			text-align: right;
 			font-family: $second-font;
 			.search-field { height: 25px !important; padding: 1px 5px 0 5px;}
-			#search-btn { background: $hab-light-green; color: white; height: 25px; padding: 0 10px; margin-top: 2px;}
+			#search-btn { height: 25px; padding: 0 10px; margin-top: 2px;}
 		}
 		#signout {
 			margin-top: -12px;
@@ -94,6 +97,11 @@ section {
 	font-weight: 600;
 	font-size: 1.3em; 
 	span {margin-top: 8px;}
+}
+
+.form-wrapper {
+	width: 50%;
+	margin: 20px auto;
 }
 
 .notification {

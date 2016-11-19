@@ -43,7 +43,7 @@
 		<div class="info-item" id="role">
 			<div class="title">Registered:</div> 
 				<% unless registered? %> 
-					<%= invite_button(@project) %><br>
+					<%= invite_button(@project, "invite-btn") %><br>
 				<% else %>
 					<%= @user.created_at.strftime("%b %Y") %>
 				<% end %>

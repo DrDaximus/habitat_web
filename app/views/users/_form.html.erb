@@ -1,4 +1,4 @@
-<%= form_for(@user) do |f| %>
+<%= bootstrap_form_for(@user) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -12,43 +12,61 @@
   <% end %>
 
   <% if current_user && current_user.admin? %>
-    <div class="field">
-    <%= f.label :role %><br>
-    <%= f.select :role, options_for_role, selected: :admin %>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-addon modal-addon">
+          Role
+        </div>  
+        <%= f.select :role, options_for_role, selected: :admin, hide_label: true %>
+      </div>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
 
-   <div class="field">
-    <%= f.label :lastname %><br>
-    <%= f.text_field :lastname %>
+  <div class="form-group">
+    <div class="input-group">
+      <div class="input-group-addon modal-addon">
+        Name
+      </div>
+      <%= f.text_field :name, placeholder: "user name", hide_label: true   %>
+    </div>
   </div>
+  <div class="form-group">
+    <div class="input-group">
+      <div class="input-group-addon modal-addon">
+        Lastname
+      </div>
+      <%= f.text_field :lastname, placeholder: "last name", hide_label: true %>
+    </div>
+  </div> 
+  <div class="form-group">
+    <div class="input-group">
+      <div class="input-group-addon modal-addon">
+        Email
+      </div>
+      <%= f.email_field :email, placeholder: "email address", hide_label: true %>
+    </div>
+  </div>  
+  <div class="form-group">
+    <div class="input-group">
+      <div class="input-group-addon modal-addon">
+        Password
+      </div>
+      <%= f.password_field :password, placeholder: "enter password", hide_label: true %>
+    </div>
+  </div>   
+  <div class="form-group">
+    <div class="input-group">
+      <div class="input-group-addon modal-addon">
+        Confirm
+      </div>   
+  <%= f.password_field :password_confirmation, placeholder: "confirm password", hide_label: true %>
+    </div>
+  </div>   
+  <%= f.hidden_field :reference %>
+
+  
+    <%= f.submit :class => "btn-submit-enquiry" %>
+
  
-   <div class="field">
-    <%= f.label :email %><br>
-    <%= f.email_field :email%>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br>
-    <%= f.password_field :password %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br>
-    <%= f.password_field :password_confirmation %>
-  </div>
-
-  <div class="field">
-    <%= f.label :reference %><br>
-    <%= f.text_field :reference %>
-  </div>
- 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>

@@ -11,5 +11,13 @@
 	<%= render 'project_stack' %>
 </div>
 
+<div id="welcome-bar" class="bar-style bar-thin add-margin">
+	<% unless registered? %>
+		<%= invite_button(@project, "white-text") %>
+	<% else %>
+  	<span><%= link_to "edit customer details", edit_user_path(@project.user_id) %></span>
+  <% end %>
+</div>
+
 <div id="project-update-modal" class="modal fade"></div>
 

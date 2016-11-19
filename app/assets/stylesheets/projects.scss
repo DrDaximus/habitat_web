@@ -183,7 +183,7 @@ $blue: #5CAED1;
 .form-control {
 	font-size: 0.9em !important;
 	height: 30px !important;
-	border: solid 1px $banners !important;
+	border: solid 1px $hab-light-green !important;
 	border-radius: 0 !important;
 }
 
@@ -192,8 +192,8 @@ $blue: #5CAED1;
 	min-width: 40px;
 	color: white !important;
 	border-radius: 0 !important;
-	border: solid 1px $banners !important;
-	background: $banners !important;
+	border: solid 1px $hab-light-green !important;
+	background: $hab-light-green !important;
 }
 
 .btn-submit-enquiry {
@@ -203,7 +203,7 @@ $blue: #5CAED1;
 	height: 38px;
 	color: white;
 	letter-spacing: 2px;
-	background: $appgreen;
+	background: $banners;
 	margin: 10px 0;
 }
 
@@ -230,4 +230,19 @@ $blue: #5CAED1;
 	width: 80%;
 
 }
-.modal-addon { min-width: 80px !important; text-align: left !important;}
+
+//------> Project Map 
+
+.hidden {
+  display: none;
+}
+.visible {
+  display: block;
+}
+.map-btn {
+  &:hover { cursor: pointer; color: $hab-light-green;}
+}
+
+//------> Form field addon's
+
+.modal-addon { min-width: 100px !important; text-align: left !important;}

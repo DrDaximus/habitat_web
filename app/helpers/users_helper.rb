@@ -7,12 +7,12 @@ module UsersHelper
 	end
 
 	# Alters account invite button depending on who's viewing.
-  def invite_button(project)
+  def invite_button(project, classname)
   	link_to send_invite_project_path(project) do
   		if current_user.admin?
-				content_tag(:span, "Send an Invite", class: "invite-btn")
+				content_tag(:span, "Send an Invite", class: classname)
 			else
-				content_tag(:span, "Email me registration details", class: "invite-btn")
+				content_tag(:span, "Email me registration details", class: classname)
 			end
 		end
 	end 
