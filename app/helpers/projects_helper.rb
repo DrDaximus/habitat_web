@@ -26,6 +26,25 @@ module ProjectsHelper
   	start ? start.strftime("%a %-d %b %Y") : "TBC" 
   end
 
+  def project_icon(stage)
+  		case stage
+  		when 1
+  			"icon-note"
+  		when 2
+  			"icon-calculator"
+  		when 3
+  			"icon-calendar"
+  		when 4
+  			"icon-rocket"
+  		when 5
+  			"icon-check"
+  		end
+  end
+
+  def days_ago(date)
+  	pluralize(Date.today.day - date.day, "day")
+  end
+
   def budget(budget)
 		case budget
 		when 5

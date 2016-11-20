@@ -5,8 +5,8 @@
 			<%= @project.added_by %>
 		</div>
 		<div class="info-item" id="added-on">
-			<div class="title"><small>on:</small></div> 
-			<span><%= @project.created_at.strftime("%d %b %y") %></span>
+			<div class="title"><small>created:</small></div> 
+			<span><b><%= days_ago(@project.created_at) %> ago</b> (<%= @project.created_at.strftime("%d %b %y") %>)</span>
 		</div>
 		<div class="info-item" id="added-on">
 			<div class="title"><small>ideal start:</small></div> 
@@ -26,8 +26,8 @@
 		<div class="info-item" id="address">
 			<div class="title">Address:</div> 
 			<%= @project.post_code %><br>
-			<%= @project.longitude %><br>
-			<%= @project.latitude %><br>
+			<br>
+			<br>
 			<br>
 		</div>
 		<div class="divide-line"></div>

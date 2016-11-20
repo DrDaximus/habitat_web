@@ -9,15 +9,129 @@ $title-color: #9B9B9B;
 $midgrey: #CECECE;
 $blue: #5CAED1;
 
+$stage1color: #52C4F5;
+$stage2color: #FF6A7C;
+$stage3color: #FFA951;
+$stage4color: #B8E3BF;
+$stage5color: #E3E3E3;
+
+
+
+//-----> Projects List
+
+.projects-wrapper	{
+	margin-top: 1px;
+	margin-left: -2px;
+	margin-bottom: 0px;
+	width: 1004px;
+	.project-box {
+		border: solid 2px white;
+		display: inline-block;
+		margin-right: -3px;
+		width: 200px;
+		height: 220px;
+		.project-upper {
+			margin: 0 auto;
+			padding-top: 5px;
+			width: 193px;
+			height: 55px;
+			color: white;
+			.project-icon { 
+				padding: 5px 0 0 20px; 
+				text-align: center; 
+				font-size: 2em; 	
+			}
+			.red {color: red;} 
+			.project-title { 
+				font-weight: bold;
+				font-size: 1.1em;
+				padding: 3px 0 0 18px;
+				.location { margin-top: -3px; font-weight: normal; font-size: 0.7em; }
+			}
+		}
+		.project-lower {
+			margin: 0 auto;
+			background: white;
+			width: 192px;
+			height: 138px;
+			margin-top: 0px;
+			padding: 4px;
+			color: $banners;
+			.project-items {
+				font-size: 0.8em;
+				span { color: grey; }
+			}
+		}
+		.project-footer {
+			padding-top: 4px;
+			font-size: 0.8em;
+			color: white;
+			a {color: white;}
+			text-align: center;
+		}
+	}
+	.stage1 {
+		background: $stage1color ;
+	}
+	.stage2 {
+		background: $stage2color ;
+	}
+	.stage3 {
+		background: $stage3color ;
+	}
+	.stage4 {
+		background: $stage4color ;
+	}
+	.stage5 {
+		background: $stage5color ;
+	}
+}
+
+.pagination {
+	margin-top: -8px !important;
+  text-align: center;
+  padding: 0.3em;
+  cursor: default;
+  a, span, em {
+    padding: 0.2em 0.5em;
+  }
+  .disabled {
+    color: #aaaaaa;
+  	font-size: 0.8em !important;
+  }
+  .current {
+  	font-size: 0.8em !important;
+    color: $hab-light-green;
+  }
+  a {
+  	font-size: 0.8em !important;
+    color: #0063dc;
+    text-decoration: none;
+    &:hover, &:focus {
+      color: $hab-light-green;
+    }
+  }
+  .page_info {
+    color: #aaaaaa;
+  	.previous_page, .next_page {
+ 	 	}
+  	.previous_page {
+    	margin-right: 0.5em;
+  	}
+  	.next_page {
+   	 	margin-left: 0.5em;
+  	}
+	}
+}
+
+//-----> Show Job
+
 .divide-line {
 	width: 100%;
 	height: 1px;
 	background: $banners;
 	margin: 10px 0;
 }
-
-
-//-----> Show Job
 
 #timeline-line {
 	position: absolute;

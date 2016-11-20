@@ -6,28 +6,18 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
-    @quoting = Project.where(["stage = ?", 2])
-    @enq = Project.where(["stage = ?", 1])
-    @quoting_hash = Gmaps4rails.build_markers(@quoting) do |project, marker|
+    @projects = Project.order(stage: :asc, created_at: :desc).all
+    @pag_projects = @projects.paginate(:page => params[:page], :per_page => 15)
+    @hash = Gmaps4rails.build_markers(@pag_projects) do |project, marker|
       marker.lat project.latitude
       marker.lng project.longitude
       marker.picture({
-        "url" => ActionController::Base.helpers.asset_path('quote_marker.png'),
+        "url" => ActionController::Base.helpers.asset_path("stage_#{project.stage}_marker.png"),
         "width" => 22,
-        "height" => 36
+        "height" => 36,
         })
+      marker.title project.first_name + " " + project.last_name + " ("+project.job_type+")"
     end 
-    @enq_hash = Gmaps4rails.build_markers(@enq) do |project, marker|
-      marker.lat project.latitude
-      marker.lng project.longitude
-      marker.picture({
-        "url" => ActionController::Base.helpers.asset_path('enq_marker.png'),
-        "width" => 22,
-        "height" => 36
-        })
-    end 
-    
   end
 
   def search

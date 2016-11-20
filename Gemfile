@@ -27,11 +27,12 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'font-awesome-rails', '~> 4.5', '>= 4.5.0.1'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'bootstrap_form'
-gem 'simple-line-icons-rails'
+gem 'simple-line-icons-rails', '~> 0.0.1'
 gem 'uk_postcode', '~> 2.1.0'
 gem 'geocoder'
 gem 'gmaps4rails'
 gem 'jquery-turbolinks'
+gem 'will_paginate', '~> 3.1.0'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
