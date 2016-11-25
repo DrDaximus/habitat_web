@@ -1,5 +1,5 @@
 <div id="welcome-bar" class="bar-style bar-thin add-margin bold-bar">
-  <span><%= @project.reference %></span>
+  <span><%= @project.reference %> | <%= link_to "Contract PDF", send_contract_project_path(@project, format: "pdf") %></span>
 </div>
 
 <%= render 'project_timeline' %>

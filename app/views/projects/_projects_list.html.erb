@@ -6,6 +6,7 @@
       <div class="col-md-10 project-title">
         <% if project.user && project.user.customer? %>
           <%= link_to user_path(project.user.id) do %>
+            <i class="icon-star user-star"></i>
             <%= project.user.lastname.upcase %>
           <% end %>
         <% else %>
@@ -21,6 +22,7 @@
       <%= project.job_type %> <br>
       Quote: <%= to_cur(project.quote) %> <br>
       Start: <%= project.start_date %> <br>
+      <%= link_to 'Show', project %>
     </div>
   </div>
   <div class="project-footer">

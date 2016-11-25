@@ -100,6 +100,14 @@ section {
 	span {margin-top: 8px;}
 }
 
+.alt-bar {
+	color: $banners;
+	span {a {color: $banners;}}
+	background: white;
+	border-top: solid 1px $banners; 
+	border-bottom: solid 1px $banners; 
+}
+
 .form-wrapper {
 	width: 50%;
 	margin: 20px auto;

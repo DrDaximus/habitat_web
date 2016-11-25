@@ -13,6 +13,12 @@ class Project < ActiveRecord::Base
 	geocoded_by :post_code  
 	after_validation :geocode          # auto-fetch coordinates
 
+	scope :enquiries, -> { where(stage: 1) }
+	scope :quoting, -> { where(stage: 2) }
+	scope :booked, -> { where(stage: 3) }
+	scope :active, -> { where(stage: 4) }
+	scope :complete, -> { where(stage: 5) }
+
 	# When customer creates an acc, update project with id.
 	def update_user_id(project, id)
 		project.update_attributes(:user_id => id)

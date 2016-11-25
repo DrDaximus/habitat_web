@@ -1,12 +1,19 @@
 class ProjectsController < ApplicationController
   before_filter :authorise
   before_filter :must_be_admin, except: [:new, :create, :show]
-  before_action :set_project, only: [:show, :edit, :update, :destroy, :send_email]
+  before_action :set_project, only: [:send_contract, :show, :edit, :update, :destroy, :send_email]
 
   # GET /projects
   # GET /projects.json
   def index
     @projects = Project.order(stage: :asc, created_at: :desc).all
+    @all_projects = @projects
+    @projects = @projects.enquiries if params[:enquiries]
+    @projects = @projects.quoting if params[:quoting]
+    @projects = @projects.booked if params[:booked]
+    @projects = @projects.active if params[:active]
+    @projects = @projects.complete if params[:complete]
+
     @pag_projects = @projects.paginate(:page => params[:page], :per_page => 15)
     @hash = Gmaps4rails.build_markers(@pag_projects) do |project, marker|
       marker.lat project.latitude
@@ -106,6 +113,17 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def send_contract
+    respond_to do |format|
+      format.pdf do 
+        pdf = ContractPdf.new(@project)
+        send_data pdf.render, filename: "#{@project.reference}_#{@project.last_name}_Contract.pdf",
+                              type: "application/pdf",
+                              disposition: "inline"
+      end
+    end
+  end
+
   private
 
     def check_stage
@@ -138,6 +156,8 @@ class ProjectsController < ApplicationController
         CustomerLink.link_email(@project).deliver_now
       end
     end 
+
+
 
     # Use callbacks to share common setup or constraints between actions.
     def set_project

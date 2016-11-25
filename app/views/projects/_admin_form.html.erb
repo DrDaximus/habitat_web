@@ -11,6 +11,15 @@
 		</div>
 		</div>
 
+		<div class="form-group">
+			<div class="input-group">
+				<div class="input-group-addon modal-addon">
+					Quote
+				</div>
+ 				<%= f.number_field :quote, hide_label: true, placeholder: "Quote Amount", id: "modal-field" %>
+ 			</div>
+	  </div>
+
 	  <div class="form-group">
  			<%= f.check_box :q_sent, label: "Quote Sent?"  %>
 	  </div>
@@ -24,14 +33,7 @@
 	  </div>
 
 
-	  	<div class="form-group">
-			<div class="input-group">
-				<div class="input-group-addon modal-addon">
-					Quote
-				</div>
- 				<%= f.number_field :quote, hide_label: true, placeholder: "Quote Amount", id: "modal-field" %>
- 			</div>
-	  </div>
+	  	
 
 		<div class="form-group">
 			<div class="input-group">

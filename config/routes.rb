@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :projects do
     member do
       get 'send_invite' => 'projects#send_invite'
+      get 'send_contract' => 'projects#send_contract'
     end
   end
   resources :sessions

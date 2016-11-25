@@ -21,7 +21,21 @@
 
 <!-- PROJECTS BAR-->
 <div id="project-bar" class="bar-style bar-thin add-margin bold-bar">
-  <span>Project List</span>
+  <span>
+    Project List
+  </span>
+</div>
+
+<!-- SCOPE BAR-->
+<div id="scope-bar" class="bar-style bar-thin add-margin alt-bar">
+  <span>
+    <%= link_to "All (#{@all_projects.count})", projects_path %> |
+    <%= link_to "Enquiries (#{@all_projects.enquiries.count})", projects_path(enquiries: true) %> |
+    <%= link_to "Quoting (#{@all_projects.quoting.count})", projects_path(quoting: true) %> |
+    <%= link_to "Booked (#{@all_projects.booked.count})", projects_path(booked: true) %> |
+    <%= link_to "Active (#{@all_projects.active.count})", projects_path(active: true) %> |
+    <%= link_to "Complete (#{@all_projects.complete.count})", projects_path(complete: true) %>
+  </span>
 </div>
 
 <!-- PROJECTS LIST -->
@@ -30,10 +44,11 @@
 </div>
 
 <!-- PAGINATION BAR -->
-<div id="paginate-bar" class="bar-style bar-thin add-margin bold-bar">
-  <span><%= will_paginate @pag_projects, :previous_label => '<<', :next_label => '>>' %></span>
+<div id="paginate-bar" class="bar-style bar-thin add-margin alt-bar">
+  <span>
+    <%= will_paginate @pag_projects, :previous_label => '<<', :next_label => '>>' %>
+  </span>
 </div>
-
 
 <!-- HIDE/SHOW & RENDER MAP -->
 <script>
