@@ -34,6 +34,7 @@ gem 'gmaps4rails'
 gem 'jquery-turbolinks'
 gem 'will_paginate', '~> 3.1.0'
 gem 'prawn'
+gem "paperclip", "~> 5.0.0"
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'

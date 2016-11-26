@@ -3,6 +3,10 @@ class Project < ActiveRecord::Base
 	belongs_to :user # Only if customer registers their account.  
 	belongs_to :team # Only if customer registers their account.  
 
+	has_attached_file :contract
+
+	validates_attachment :contract, content_type: { content_type: 'application/pdf' }
+
 	# If no user logged in, check if that email already exists in the customer database.
 	validate :check_existing_customer, unless: :user_id?, on: :create
 	validate :check_pc
@@ -22,6 +26,14 @@ class Project < ActiveRecord::Base
 	# When customer creates an acc, update project with id.
 	def update_user_id(project, id)
 		project.update_attributes(:user_id => id)
+	end
+
+	def self.update_email(project, email)
+		project.update_attributes(:email => email)
+	end
+
+	def self.update_contract(project)
+		project.update_attributes(:contract_present => true, :contract_date => Time.now)
 	end
 
 	def post_code=(str)

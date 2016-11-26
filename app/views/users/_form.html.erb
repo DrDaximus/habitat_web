@@ -11,12 +11,12 @@
     </div>
   <% end %>
 
-  <% if current_user && current_user.admin? %>
+  <% if current_user && current_user.admin? && @user.new_record?  %>
     <div class="form-group">
       <div class="input-group">
         <div class="input-group-addon modal-addon">
           Role
-        </div>  
+        </div> 
         <%= f.select :role, options_for_role, selected: :admin, hide_label: true %>
       </div>
     </div>

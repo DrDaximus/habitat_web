@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   before_filter :authorise
   before_filter :must_be_admin, except: [:new, :create, :show]
-  before_action :set_project, only: [:send_contract, :show, :edit, :update, :destroy, :send_email]
+  before_action :set_project, only: [:render_contract, :show, :edit, :update, :destroy, :send_email]
 
   # GET /projects
   # GET /projects.json
@@ -113,46 +113,64 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def send_contract
+  # Generate contract, save attachemnt to model, send contract via email, update contract_present attribute, and confirm.
+  def render_contract
     respond_to do |format|
       format.pdf do 
         pdf = ContractPdf.new(@project)
-        send_data pdf.render, filename: "#{@project.reference}_#{@project.last_name}_Contract.pdf",
-                              type: "application/pdf",
-                              disposition: "inline"
+        pdf.render_file("#{@project.reference}_#{@project.last_name}_Contract.pdf")
+        pdf_contract = File.open("#{@project.reference}_#{@project.last_name}_Contract.pdf")
+        @project.contract = pdf_contract
+        #send_data pdf.render, filename: "#{@project.reference}_#{@project.last_name}_Contract.pdf",
+                              #type: "application/pdf"
+                              #disposition: "inline"
       end
     end
+    CustomerLink.email_contract(@project).deliver_now
+    Project.update_contract(@project)
+    redirect_to @project, notice: "Contract Sent"
   end
 
   private
 
+  # Check current stage of job by assessing state of exisitng attributes. Called on update.
     def check_stage
       if @project.complete?
+      #Project 'Complete' if complete attribute has been ticked.
         @stage = 5
         @project.update_stage(@stage)
       elsif @project.start_date && Date.today > @project.start_date
-        @stage = 4
+      #Project 'Active' if start date is greater than today
+        @stage = 4 
         @project.update_stage(@stage)
       elsif @project.start_date
-        @stage = 3
+      #Project 'Booked' if start_date present
+        @stage = 3 
         @project.update_stage(@stage)
       elsif @project.handled
-        @stage = 2
+      #Project 'Quoting' if admin assigned as handler
+        @stage = 2 
         @project.update_stage(@stage)
       else
-        @project.update_stage(1)
+      #Else project is an 'Enquiry'.
+        @project.update_stage(1) 
       end
     end
 
+    # Send eamil to customer. Link sent if admin sending invite, or new customer generated project.
     def send_email
       if current_user.customer?
+        # if existing user, send notice of new project creation.
         @user = User.find(@project.user_id)
         CustomerLink.existing_customer_new_project(@project, @user).deliver_now
       elsif current_user.admin?
+        # If admin created project, send an invite to the email adress added by admin for user signup. Link inc.
+        # Check email address exists before attempting to send email.
         if @project.email?
           CustomerLink.admin_invite(@project).deliver_now
         end
       else
+        # New customer generated enquiry, send invite email with link.
         CustomerLink.link_email(@project).deliver_now
       end
     end 
@@ -166,7 +184,7 @@ class ProjectsController < ApplicationController
    
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:reference, :added_by, :job_type, :stage, :quote, :start_date, :team_id, :pif, :contract, :handled, :q_sent, :user_id, :email, :first_name, :last_name, :telephone, :post_code, :budget, :when, :design, :notes, :complete, :deposit, :longitude, :latitude)
+      params.require(:project).permit(:reference, :added_by, :job_type, :stage, :quote, :start_date, :team_id, :pif, :contract, :contract_present, :contract_date, :handled, :q_sent, :user_id, :email, :first_name, :last_name, :telephone, :post_code, :budget, :when, :design, :notes, :complete, :deposit, :longitude, :latitude)
     end
 
     def must_be_admin

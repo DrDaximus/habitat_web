@@ -207,6 +207,8 @@ $stage5color: #E3E3E3;
 #added-on { span {color: $blue; font-size: 0.8em} }
 #lastname, #email { padding-top: 2px; }
 
+//-----> STACK 
+
 .stack-box {
 	font-family: $second-font;
 	font-weight: 500;
@@ -225,6 +227,10 @@ $stage5color: #E3E3E3;
 .highlight { color: $blue; }
 
 .stack-button { background: $blue; color: white;} 
+
+.stack-button-disabled {
+	color: lightgrey;
+}
 
 .add-icon { 
 	cursor: pointer;

@@ -11,22 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161111154919) do
+ActiveRecord::Schema.define(version: 20161126131346) do
 
   create_table "projects", force: :cascade do |t|
     t.string   "reference"
-    t.string   "added_by",   default: "Unknown"
+    t.string   "added_by",              default: "Unknown"
     t.string   "job_type"
-    t.integer  "stage",      default: 1
+    t.integer  "stage",                 default: 1
     t.decimal  "quote"
     t.date     "start_date"
     t.integer  "team_id"
-    t.boolean  "pif",        default: false
-    t.boolean  "contract",   default: false
+    t.boolean  "pif",                   default: false
+    t.boolean  "contract_present",      default: false
     t.string   "handled"
-    t.boolean  "q_sent",     default: false
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.boolean  "q_sent",                default: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
     t.string   "email"
     t.integer  "user_id"
     t.string   "first_name"
@@ -41,6 +41,11 @@ ActiveRecord::Schema.define(version: 20161111154919) do
     t.boolean  "deposit"
     t.float    "latitude"
     t.float    "longitude"
+    t.datetime "contract_date"
+    t.string   "contract_file_name"
+    t.string   "contract_content_type"
+    t.integer  "contract_file_size"
+    t.datetime "contract_updated_at"
   end
 
   create_table "teams", force: :cascade do |t|

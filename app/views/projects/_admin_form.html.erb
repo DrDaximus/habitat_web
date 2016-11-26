@@ -16,25 +16,22 @@
 				<div class="input-group-addon modal-addon">
 					Quote
 				</div>
- 				<%= f.number_field :quote, hide_label: true, placeholder: "Quote Amount", id: "modal-field" %>
+ 				<%= f.text_field :quote, hide_label: true, placeholder: "Quote Amount", id: "modal-field" %>
  			</div>
+	  </div>
+
+	  <div class="form-group">
+ 			<%= f.check_box :contract_present, label: "Contract Sent?" if @project.contract_present? %>
 	  </div>
 
 	  <div class="form-group">
  			<%= f.check_box :q_sent, label: "Quote Sent?"  %>
 	  </div>
 
-	   <div class="form-group">
- 			<%= f.check_box :contract, label: "Contract Signed?"  %>
-	  </div>
-
 	  <div class="form-group">
  			<%= f.check_box :deposit, label: "Deposit Paid?"  %>
 	  </div>
-
-
-	  	
-
+	  
 		<div class="form-group">
 			<div class="input-group">
 				<div class="input-group-addon modal-addon">
