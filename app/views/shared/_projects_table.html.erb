@@ -1,0 +1,23 @@
+<thead>
+	    <tr>
+	    	<th></th>
+	      <th>Reference</th>
+	      <th>Customer</th>
+	      <th>Location</th>
+	      <th>Quote</th>
+	      <th>Start</th>
+	    </tr>
+	  </thead>
+
+	  <tbody>
+	    <% @projects.each do |project| %>
+	      <tr>
+	      	<td> <div class="dot stage<%=project.stage%>"></div></td>
+	        <td id="project-reference"><%= link_to "#{project.reference}", project_path(project) %></td>
+	        <td id="project-customer"><%= project.last_name%></td>
+	        <td id="project-location"><%= project.post_code %></td>
+	        <td id="project-quote"><%= to_cur(project.quote) %></td>
+	        <td id="project-start"><%= project.start_date ? project.start_date.strftime("%d %b %y") : "TBC" %></td>
+	      </tr>
+	    <% end %>
+	  </tbody>

@@ -1,4 +1,6 @@
 class TeamsController < ApplicationController
+  before_filter :authorise
+  before_filter :must_be_admin
   before_action :set_team, only: [:show, :edit, :update, :destroy]
 
   # GET /teams
@@ -10,6 +12,7 @@ class TeamsController < ApplicationController
   # GET /teams/1
   # GET /teams/1.json
   def show
+    @projects = @team.projects.order(start_date: :asc)
   end
 
   # GET /teams/new

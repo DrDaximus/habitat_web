@@ -1,4 +1,4 @@
-<div id="teams-bar" class="bar-style bar-thin add-margin bold-bar">
+<div id="teams-bar" class="bar-style bar-thin add-margin bold-bar green-bar">
   <span>Habitat Teams</span>
 </div>
   
@@ -9,6 +9,7 @@
       <th>No.</th>
       <th>Name</th>
       <th>Leader</th>
+      <th>Projects</th>
       <th colspan="3">Options</th>
     </tr>
   </thead>
@@ -16,9 +17,10 @@
   <tbody>
     <% @teams.order(team_no: :asc).each do |team| %>
       <tr>
-        <td id="team-no"><%= team.team_no %></td>
-        <td id="team-name"><%= team.team_name %></td>
+        <td id="team-no"><%=team.team_no%></td>
+        <td id="team-name"><%= link_to "#{team.team_name}", team_path(team) %></td>
         <td id="team-leader"><%= team.user.name %></td>
+        <td id="team-project-count"><%= team.projects.count %></td>
         <td class="team-opt"><%= link_to 'Edit', edit_team_path(team) %></td>
         <td class="team-opt"><%= link_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

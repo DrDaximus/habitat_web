@@ -30,8 +30,6 @@ select {
 .white-text {color: white;}
 a { color: $banners;  &:hover {text-decoration: none; color: $text-hover;} }
 
-
-
 body {
 	margin: 0;
 	overflow: auto;
@@ -87,11 +85,18 @@ section {
 		font-size: 0.8em;
 		display: inline-block;
 		margin-top: 10px;
-		a { text-decoration: none; color: white; &:hover { color: #9AC66A; }}
+		a { text-decoration: none; color: white; &:hover { color: $text-hover; }}
 	}
 }
 
 .add-margin { margin-top: 1px; }
+
+.green-bar { 
+	background: $appgreen; 
+	span { 
+		a { &:hover { color: $banners; } }
+	}
+}
 
 .bold-bar { 
 	font-family: $second-font; 
@@ -122,5 +127,21 @@ section {
 }
 #alert { background: $red; }
 #notice { background: $hab-light-green; }
+
+	.stage1 {
+		background: $stage1color ;
+	}
+	.stage2 {
+		background: $stage2color ;
+	}
+	.stage3 {
+		background: $stage3color ;
+	}
+	.stage4 {
+		background: $stage4color ;
+	}
+	.stage5 {
+		background: $stage5color ;
+	}
 
 footer { margin-top: 10px; }

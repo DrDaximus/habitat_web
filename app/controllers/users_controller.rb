@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :authorise, except: [:new, :create]
+  before_filter :must_be_admin, except: [:new, :create, :edit, :update, :show]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
@@ -10,7 +12,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-     @projects = Project.where(["user_id = ?", @user.id])
+    @projects = Project.where(["handled = ?", @user.name])
   end
 
   # GET /users/new
@@ -72,6 +74,11 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
+      if current_user.customer? && @user.id != current_user.id
+        redirect_to root_path, alert: "Not Authorised"
+      else
+        @user
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

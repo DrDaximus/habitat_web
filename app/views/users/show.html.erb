@@ -1,46 +1,24 @@
 
 <% unless current_user && current_user.guest? %>
 
-<div id="welcome-bar" class="bar-style bar-thin add-margin bold-bar">
+<div id="welcome-bar" class="bar-style bar-thin add-margin bold-bar green-bar">
   <span><%= @user.name %>'s <%= @user.role %> account</span>
 </div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %> <%= @user.lastname %>
-</p>
+<h3> <%=@user.role.capitalize%> Dash </h3>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<p>
-  <strong>Role:</strong>
-  <%= @user.role %>
-</p>
-
-<% if @user.customer? %>
-<p>
-  <strong>Jobs</strong><br>
-  <% @projects.each do |project| %>
-    --------------------------------
-    <%= link_to project_path(project.id) do %>
-    <br>
-    <strong>Job Type:</strong>
-    <%= project.job_type %><br>
-    <strong>Added by:</strong>
-    <%= project.added_by %><br>
-
-    <% end %>
-    --------------------------------
-  <% end %>
-</p>
+<% if @user.admin? %>
+  <%= render 'admin_dash' %>
+<% elsif @user.designer? %>
+  <%= render 'designer_dash' %>
+<% else %>
+  <%= render 'customer_dash' %>
 <% end %>
 
-<%= new_project_links %> |
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+
+<div id="dash-bar" class="bar-style bar-thin add-margin green-bar">
+  <span><%= link_to 'edit account', edit_user_path(@user) %> <%= new_project_links %></span>
+</div>
 
 <% else %>
 

@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
 	has_many :projects
   has_many :teams
 
-	enum role: [:admin, :customer, :guest]
+	enum role: [:admin, :customer, :guest, :designer]
 
 	after_initialize :set_default_role, :if => :new_record?
 	validates_presence_of :email, :password_digest, unless: :guest?
@@ -44,4 +44,9 @@ class User < ActiveRecord::Base
   	projects.update_all(user_id: user.id)
   end
 
+  def access?
+    if self.role == "admin" || "designer"
+      true
+    end
+  end
 end

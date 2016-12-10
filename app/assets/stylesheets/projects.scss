@@ -9,14 +9,6 @@ $title-color: #9B9B9B;
 $midgrey: #CECECE;
 $blue: #5CAED1;
 
-$stage1color: #52C4F5;
-$stage2color: #FF6A7C;
-$stage3color: #FFA951;
-$stage4color: #B8E3BF;
-$stage5color: #E3E3E3;
-
-
-
 //-----> Projects List
 
 .projects-wrapper	{
@@ -48,7 +40,6 @@ $stage5color: #E3E3E3;
 				font-size: 1.1em;
 				padding: 3px 0 0 18px;
 				.location { margin-top: -3px; font-weight: normal; font-size: 0.7em; }
-				.user-star { color: yellow; font-weight: bold; font-size: 0.9em;}
 			}
 		}
 		.project-lower {
@@ -71,21 +62,6 @@ $stage5color: #E3E3E3;
 			a {color: white;}
 			text-align: center;
 		}
-	}
-	.stage1 {
-		background: $stage1color ;
-	}
-	.stage2 {
-		background: $stage2color ;
-	}
-	.stage3 {
-		background: $stage3color ;
-	}
-	.stage4 {
-		background: $stage4color ;
-	}
-	.stage5 {
-		background: $stage5color ;
 	}
 }
 

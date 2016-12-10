@@ -1,62 +1,71 @@
 <%= bootstrap_form_for(@project) do |f| %>
  
  	<div id="modal-wrapper">
- 
-	 	<div class="form-group">
-			<div class="input-group">
-				<div class="input-group-addon modal-addon">
-					Surveyor
-				</div>
-	 	 	<%= f.select :handled, admin.all.collect {|a| a.name}, prompt: "Who is handling the enquiry?", hide_label: true %>
-		</div>
-		</div>
 
-		<div class="form-group">
-			<div class="input-group">
-				<div class="input-group-addon modal-addon">
-					Quote
-				</div>
- 				<%= f.text_field :quote, hide_label: true, placeholder: "Quote Amount", id: "modal-field" %>
- 			</div>
+ 		<div class="form-group">
+ 			<%= f.check_box :design, label: "Design Available?" %>
 	  </div>
 
-	  <div class="form-group">
- 			<%= f.check_box :contract_present, label: "Contract Sent?" if @project.contract_present? %>
-	  </div>
+	 	<% if current_user.admin? %>
 
-	  <div class="form-group">
- 			<%= f.check_box :q_sent, label: "Quote Sent?"  %>
-	  </div>
-
-	  <div class="form-group">
- 			<%= f.check_box :deposit, label: "Deposit Paid?"  %>
-	  </div>
-	  
-		<div class="form-group">
-			<div class="input-group">
-				<div class="input-group-addon modal-addon">
-					Team
-				</div>
-		 		<%= f.collection_select :team_id, Team.all, :id, :team_name, :prompt => "Which team has been allocated?", hide_label: true, include_blank: true %>
+		 	<div class="form-group">
+				<div class="input-group">
+					<div class="input-group-addon modal-addon">
+						Surveyor
+					</div>
+		 	 	<%= f.select :handled, admin.all.collect {|a| a.name}, prompt: "Who is handling the enquiry?", hide_label: true, include_blank: "Designer" %>
 			</div>
-		</div>
+			</div>
 
-		<div class="form-group">
-		 	<%= f.date_select :start_date, include_blank: true %>
-		</div>
+			<div class="form-group">
+				<div class="input-group">
+					<div class="input-group-addon modal-addon">
+						Quote
+					</div>
+	 				<%= f.text_field :quote, hide_label: true, placeholder: "Quote Amount", id: "modal-field" %>
+	 			</div>
+		  </div>
 
-	  <div class="form-group">
- 			<%= f.check_box :complete, label: "Work Complete?"  %>
-	  </div>
+		  <div class="form-group">
+	 			<%= f.check_box :contract_present, label: "Contract Sent?" if @project.contract_present? %>
+		  </div>
 
-	  <div class="form-group">
- 			<%= f.check_box :pif, label: "Paid in Full?" %>
-	  </div>
-	
+		  <div class="form-group">
+	 			<%= f.check_box :q_sent, label: "Quote Sent?"  %>
+		  </div>
+
+		  <div class="form-group">
+	 			<%= f.check_box :deposit, label: "Deposit Paid?"  %>
+		  </div>
+		  
+			<div class="form-group">
+				<div class="input-group">
+					<div class="input-group-addon modal-addon">
+						Team
+					</div>
+			 		<%= f.collection_select :team_id, Team.all, :id, :team_name, :prompt => "Which team has been allocated?", hide_label: true, include_blank: "No Team" %>
+				</div>
+			</div>
+
+			<div class="form-group">
+			 	<%= f.date_select :start_date, :prompt => { :day => 'Select day', :month => 'Select month', :year => 'Select year' } %>
+			</div>
+
+		  <div class="form-group">
+	 			<%= f.check_box :complete, label: "Work Complete?"  %>
+		  </div>
+
+		  <div class="form-group">
+	 			<%= f.check_box :pif, label: "Paid in Full?" %>
+		  </div>
+
+		<% end %>
+		
 	</div>
+	
 
 	<div class="modal-footer">
 		<%= f.submit value: "Update", :class => "btn-update-project" %>
 	</div>
 
-<% end %>
+	<% end %>

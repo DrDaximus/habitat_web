@@ -6,17 +6,17 @@
 		<%= @project.job_type %> 
 		
 			<!-- STACK Job Icons CODE SHOULD BE MOVED BUT VIEW POSITIONING RELATIVE TO CURRENT PARENT DIV-->
-			<div class="add-icon <%= 'check' if @project.design? %>" id="design-icon" title="Design Job">
+			<div class="add-icon <%= 'check' if @project.design? %>" id="design-icon" title="<%= @project.design? ? "Design Available" : "No Design Available"%>">
 				<i class="fa <%= icon_check(@project.design) %> fa-2x" ></i><br>
 				Design
 			</div>
 		
-			<div class="add-icon <%= 'check' if @project.deposit? %>" id="quoted-icon" title="Deposit Status">
+			<div class="add-icon <%= 'check' if @project.deposit? %>" id="quoted-icon" title="<%= @project.deposit? ? "Deposit Paid - Slot Secured" : "No Deposit Recieved - Slot Unsecured!"%>">
 				<i class="fa <%= icon_check(@project.deposit) %> fa-2x"></i><br>
 				Deposit
 			</div>
 
-			<div class="add-icon <%= 'check' if @project.contract_present? %>" id="contract-icon" title="<%= @project.contract_present? ? "Contract Sent on #{@project.contract_date.strftime("%d-%b-%Y at %R")}" : "Not yet sent!"%>">
+			<div class="add-icon <%= 'check' if @project.contract_present? %>" id="contract-icon" title="<%= @project.contract_present? ? "Contract Sent on #{@project.contract_date.strftime("%d-%b-%Y at %R")}" : "No contract sent yet!"%>">
 				<i class="fa <%= icon_check(@project.contract_present) %> fa-2x" ></i><br>
 				Contract
 			</div>
@@ -54,36 +54,38 @@
 	</div>
 
 	<!-- STACK Update Button -->
-	<% if current_user.admin? %>
-		<%= link_to edit_project_path(@project), remote: true do %>
-			<div class="stack-box stack-button" id="stack-update">
-				Update Project
-			</div>
-		<% end %>
-	
-	<!-- STACK Contract Button Admin view - NEEDS REFACTORING -->
-		<% if @project.stage >= 2 && @project.quote && @project.contract_present == false %>
-			<%= link_to render_contract_project_path(@project, format: "pdf") do %>
-				<div class="stack-box stack-button" id="stack-contract">Generate Contract</div>
+		<% if current_user.access? %>
+				<%= link_to edit_project_path(@project), remote: true do %>
+					<div class="stack-box stack-button" id="stack-update">
+						Update Project
+					</div>
+				<!-- STACK Contract Button Admin view - NEEDS REFACTORING -->
+				<% if current_user.admin? %>
+					<% if @project.stage >= 2 && @project.quote && @project.contract_present == false %>
+						<%= link_to render_contract_project_path(@project, format: "pdf") do %>
+							<div class="stack-box stack-button" id="stack-contract">Generate Contract</div>
+						<% end %>
+					<% elsif @project.contract_present? %>
+						<%= link_to @project.contract.url(:original, false) do %>
+							<div class="stack-box stack-button" id="contract-enabled">View Contract</div>
+						<% end %>
+					<% else %>
+							<div class="stack-box stack-button-disabled" id="contract-disabled">Generate Contract</div>
+					<% end %>
+				<% end %>
 			<% end %>
-		<% elsif @project.contract_present? %>
-			<%= link_to @project.contract.url(:original, false) do %>
-				<div class="stack-box stack-button" id="contract-enabled">View Contract</div>
-			<% end %>
-		<% else %>
-				<div class="stack-box stack-button-disabled" id="contract-disabled">Generate Contract</div>
 		<% end %>
-	<% end %>
- 	<!-- STACK Contract Button Cusotmer view - NEEDS REFACTORING -->
-	<% if current_user.customer? %>
-		<% if @project.contract_present? %>
-			<%= link_to @project.contract.url(:original, false) do %>
-				<div class="stack-box stack-button" id="contract-enabled">View/Download Contract</div>
+		
+	 	<!-- STACK Contract Button Cusotmer view - NEEDS REFACTORING -->
+		<% if current_user.customer? %>
+			<% if @project.contract_present? %>
+				<%= link_to @project.contract.url(:original, false) do %>
+					<div class="stack-box stack-button" id="contract-enabled">View/Download Contract</div>
+				<% end %>
+			<% else %>
+					<div class="stack-box stack-button-disabled" id="contract-disabled">View/Download Contract</div>
 			<% end %>
-		<% else %>
-				<div class="stack-box stack-button-disabled" id="contract-disabled">View/Download Contract</div>
 		<% end %>
-	<% end %>
 
 
 </div>

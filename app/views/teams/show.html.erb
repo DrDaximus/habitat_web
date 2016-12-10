@@ -1,19 +1,12 @@
-<p id="notice"><%= notice %></p>
+<div id="welcome-bar" class="bar-style bar-thin add-margin bold-bar">
+  <span>Team <%= @team.team_no %> - <%= @team.team_name %></span>
+</div>
 
-<p>
-  <strong>Team name:</strong>
-  <%= @team.team_name %>
-</p>
+<div class="form-wrapper">
+	<h4>Assigned Projects</h4>
+	<table class="table">
+	   <%= render "shared/projects_table" %>
+	</table>
+</div>
 
-<p>
-  <strong>Team no:</strong>
-  <%= @team.team_no %>
-</p>
-
-<p>
-  <strong>Team leader:</strong>
-  <%= @team.user.name %>
-</p>
-
-<%= link_to 'Edit', edit_team_path(@team) %> |
 <%= link_to 'Back', teams_path %>

@@ -17,5 +17,21 @@ class ApplicationController < ActionController::Base
   def admin
     @admin = User.where(["role = ?", 0])
   end
+
+  def designer
+    @designer = User.where(["role = ?", 3])
+  end
+
   helper_method :admin
+
+  def must_be_admin_or_designer
+    unless current_user && (current_user.admin? || current_user.designer?)
+      redirect_to root_path, alert: "Admin Only"
+    end
+  end
+  def must_be_admin
+    unless current_user && current_user.admin?
+      redirect_to root_path, alert: "Admin Only"
+    end
+  end
 end

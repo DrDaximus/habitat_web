@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_filter :authorise
-  before_filter :must_be_admin, except: [:new, :create, :show]
+  before_filter :must_be_admin_or_designer, except: [:new, :create, :show]
   before_action :set_project, only: [:render_contract, :show, :edit, :update, :destroy, :send_email]
 
   # GET /projects
@@ -109,7 +109,7 @@ class ProjectsController < ApplicationController
       CustomerLink.admin_invite(@project).deliver_now
       redirect_to @project, notice: "Invite Sent"
     else
-      redirect_to @project, notice: "No Email Address Available!!!" 
+      redirect_to @project, alert: "No Email Address Available!!!" 
     end
   end
 
@@ -147,7 +147,7 @@ class ProjectsController < ApplicationController
       #Project 'Booked' if start_date present
         @stage = 3 
         @project.update_stage(@stage)
-      elsif @project.handled
+      elsif (@project.handled && @project.handled != "") || @project.quote
       #Project 'Quoting' if admin assigned as handler
         @stage = 2 
         @project.update_stage(@stage)
@@ -175,11 +175,14 @@ class ProjectsController < ApplicationController
       end
     end 
 
-
-
     # Use callbacks to share common setup or constraints between actions.
     def set_project
-      @project = Project.find(params[:id])
+      @project = Project.find(params[:id]) 
+      if current_user.customer? && @project.user_id != current_user.id
+        redirect_to root_path, alert: "Not Authorised"
+      else
+        @project
+      end
     end
    
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -187,14 +190,6 @@ class ProjectsController < ApplicationController
       params.require(:project).permit(:reference, :added_by, :job_type, :stage, :quote, :start_date, :team_id, :pif, :contract, :contract_present, :contract_date, :handled, :q_sent, :user_id, :email, :first_name, :last_name, :telephone, :post_code, :budget, :when, :design, :notes, :complete, :deposit, :longitude, :latitude)
     end
 
-    def must_be_admin
-      unless current_user && current_user.admin?
-        if current_user
-          redirect_to user_path(current_user), notice: "Not Authorised"
-        else
-          redirect_to signin_url, notice: "Not Authorised"
-        end
-      end
-    end
+    
     
 end

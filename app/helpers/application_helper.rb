@@ -12,7 +12,8 @@ module ApplicationHelper
 	def options_for_role
 		[
 			["admin"],
-			["customer"]
+			["customer"],
+			["designer"]
 		]
 	end
 
@@ -61,7 +62,7 @@ module ApplicationHelper
 	end
 
 	def new_project_links
-		if current_user && current_user.admin?
+		if current_user && (current_user.admin? || current_user.designer?)
 			link_to '| new project', new_project_path(:added_by => current_user.role)
 		elsif current_user && current_user.customer?
 			link_to '| new enquiry', new_project_path
@@ -77,7 +78,7 @@ module ApplicationHelper
 	end
 
 	def user_menu
-		if current_user && current_user.admin?
+		if current_user && (current_user.admin? || current_user.designer?)
     	render 'shared/admin_menu_bar'
   	else  
     	render 'shared/customer_menu_bar'

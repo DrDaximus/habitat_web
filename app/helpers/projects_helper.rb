@@ -42,7 +42,10 @@ module ProjectsHelper
   end
 
   def days_ago(date)
-  	pluralize(Date.today.day - date.day, "day")
+    now = Date.today
+    enquiryDate = date.to_date
+    days = (now - enquiryDate).to_i
+  	return pluralize(days, "day")
   end
 
   def budget(budget)

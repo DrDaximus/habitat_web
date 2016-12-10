@@ -14,8 +14,16 @@
 		</div>
 		<div class="divide-line"></div>
 		<div class="info-item" id="firstname">
-			<div class="title">First Name:</div> 
+			<div class="title">First Name:
+				<% if @project.user && @project.user.customer? %>
+        	<i class="icon-star user-star"></i>
+      	<% end %>
+    	</div>
+    	<% if @project.user && @project.user.customer? %> 
+		      <%= link_to "#{@user.name}", user_path(@project.user.id) %>
+			<% else %>
 			<%= firstname(@project, @user) %>
+			<% end %>
 		</div>
 		<div class="info-item" id="lastname">
 			<div class="title">Last Name:</div> 
