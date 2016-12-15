@@ -30,11 +30,11 @@
 <div id="scope-bar" class="bar-style bar-thin add-margin alt-bar">
   <span>
     <%= link_to "All (#{@all_projects.count})", projects_path %> |
-    <%= link_to "Enquiries (#{@all_projects.enquiries.count})", projects_path(enquiries: true) %> |
-    <%= link_to "Quoting (#{@all_projects.quoting.count})", projects_path(quoting: true) %> |
-    <%= link_to "Booked (#{@all_projects.booked.count})", projects_path(booked: true) %> |
-    <%= link_to "Active (#{@all_projects.active.count})", projects_path(active: true) %> |
-    <%= link_to "Complete (#{@all_projects.complete.count})", projects_path(complete: true) %>
+    <%= project_count_link("enquiries") %> |
+    <%= project_count_link("quoting") %> |
+    <%= project_count_link("booked") %> |
+    <%= project_count_link("active") %> |
+    <%= project_count_link("complete") %>
   </span>
 </div>
 

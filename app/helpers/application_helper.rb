@@ -51,14 +51,19 @@ module ApplicationHelper
 		]
 	end
 
-	def options_for_job_stage
-		[
-			["Enquery", 1],
-			["Quoting", 2],
-			["Contract", 3],
-			["Underway", 4],
-			["Complete", 5]
-		]
+	def job_stage(stage)
+		case stage
+			when 1
+				"Enquiry"
+			when 2 
+				"Quoting"
+			when 3
+				"Contract"
+			when 4
+				"Underway"
+			when 5
+				"Complete"
+		end
 	end
 
 	def new_project_links

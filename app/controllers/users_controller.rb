@@ -12,7 +12,8 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @projects = Project.where(["handled = ?", @user.name])
+    @projects = Project.all
+    @aloc_projects = @projects.where(["handled = ?", @user.name])
   end
 
   # GET /users/new

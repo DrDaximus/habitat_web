@@ -80,4 +80,16 @@ module ProjectsHelper
 		end
 	end	
 
+  def project_count_link(stage)
+    link_to "#{stage.capitalize} (#{@all_projects.send(stage).count})", projects_path("#{stage}": true)
+  end
+
+  def handled_by(name)
+    unless name == "" || name == nil
+      "(Handled by " + name + ")" 
+    else  
+      "No Handler" 
+    end
+  end
+
 end

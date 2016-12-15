@@ -10,9 +10,9 @@
 	  </thead>
 
 	  <tbody>
-	    <% @projects.each do |project| %>
+	    <% @aloc_projects.each do |project| %>
 	      <tr>
-	      	<td> <div class="dot stage<%=project.stage%>"></div></td>
+	      	<td> <div class="dot stage<%=project.stage%>" title="<%=job_stage(project.stage)%> <%= handled_by(project.handled)%>"></div></td>
 	        <td id="project-reference"><%= link_to "#{project.reference}", project_path(project) %></td>
 	        <td id="project-customer"><%= project.last_name%></td>
 	        <td id="project-location"><%= project.post_code %></td>

@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :admin
 
-  def must_be_admin_or_designer
+  def must_have_access
     unless current_user && (current_user.admin? || current_user.designer?)
       redirect_to root_path, alert: "Admin Only"
     end

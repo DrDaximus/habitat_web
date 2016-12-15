@@ -1,8 +1,8 @@
 
 <% unless current_user && current_user.guest? %>
 
-<div id="welcome-bar" class="bar-style bar-thin add-margin bold-bar green-bar">
-  <span><%= @user.name %>'s <%= @user.role %> account</span>
+<div id="welcome-bar" class="bar-style bar-thin add-margin bold-bar">
+  <span><%= @user.name %>'s <%= @user.role.capitalize %> Account</span>
 </div>
 
 <h3> <%=@user.role.capitalize%> Dash </h3>
@@ -16,7 +16,7 @@
 <% end %>
 
 
-<div id="dash-bar" class="bar-style bar-thin add-margin green-bar">
+<div id="dash-bar" class="bar-style bar-thin add-margin">
   <span><%= link_to 'edit account', edit_user_path(@user) %> <%= new_project_links %></span>
 </div>
 

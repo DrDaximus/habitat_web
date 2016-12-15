@@ -12,7 +12,7 @@ class TeamsController < ApplicationController
   # GET /teams/1
   # GET /teams/1.json
   def show
-    @projects = @team.projects.order(start_date: :asc)
+    @aloc_projects = @team.projects.order(start_date: :asc)
   end
 
   # GET /teams/new

@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_filter :authorise
-  before_filter :must_be_admin_or_designer, except: [:new, :create, :show]
+  before_filter :must_have_access, except: [:new, :create, :show]
   before_action :set_project, only: [:render_contract, :show, :edit, :update, :destroy, :send_email]
 
   # GET /projects
@@ -189,7 +189,5 @@ class ProjectsController < ApplicationController
     def project_params
       params.require(:project).permit(:reference, :added_by, :job_type, :stage, :quote, :start_date, :team_id, :pif, :contract, :contract_present, :contract_date, :handled, :q_sent, :user_id, :email, :first_name, :last_name, :telephone, :post_code, :budget, :when, :design, :notes, :complete, :deposit, :longitude, :latitude)
     end
-
-    
     
 end

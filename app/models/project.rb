@@ -17,6 +17,7 @@ class Project < ActiveRecord::Base
 	geocoded_by :post_code  
 	after_validation :geocode          # auto-fetch coordinates
 
+	scope :contracted, -> { where(contract_present: true) }
 	scope :enquiries, -> { where(stage: 1) }
 	scope :quoting, -> { where(stage: 2) }
 	scope :booked, -> { where(stage: 3) }
