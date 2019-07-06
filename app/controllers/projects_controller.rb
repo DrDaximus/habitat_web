@@ -15,7 +15,7 @@ class ProjectsController < ApplicationController
     @projects = @projects.complete if params[:complete]
 
     @pag_projects = @projects.paginate(:page => params[:page], :per_page => 15)
-    @hash = Gmaps4rails.build_markers(@pag_projects) do |project, marker|
+    @hash = Gmaps4rails.build_markers(@projects) do |project, marker|
       marker.lat project.latitude
       marker.lng project.longitude
       marker.picture({
@@ -23,7 +23,7 @@ class ProjectsController < ApplicationController
         "width" => 22,
         "height" => 36,
         })
-      marker.title project.first_name + " " + project.last_name + " ("+project.job_type+")"
+      marker.infowindow project.first_name + " " + project.last_name + " ("+project.job_type+")"
     end 
   end
 
@@ -63,7 +63,7 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       if @project.save
         session[:project_id] = @project.id
-        send_email
+        # send_email
         unless current_user.guest?
           format.html { redirect_to @project, notice: 'Project was successfully created.' } 
           format.json { render :show, status: :created, location: @project }

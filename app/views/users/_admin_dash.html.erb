@@ -1,5 +1,5 @@
-Total Job Count: <%= @projects.count %><br>
-Contract Jobs Value: <%= to_cur(@projects.contracted.sum(:quote)) %>
+My job count: <b><%= @aloc_projects.count %></b><br>
+My jobs value: <b><%= to_cur(@aloc_projects.contracted.sum(:quote)) %></b>
 <div class="form-wrapper">
 	<h4>My Projects</h4>
 	<table class="table">

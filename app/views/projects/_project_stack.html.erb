@@ -2,7 +2,7 @@
 		
 	<!-- STACK Job Type -->
 	<div class="stack-box highlight">
-		<div class="title">Type</div> 
+		<div class="title">Job type</div> 
 		<%= @project.job_type %> 
 		
 			<!-- STACK Job Icons CODE SHOULD BE MOVED BUT VIEW POSITIONING RELATIVE TO CURRENT PARENT DIV-->
@@ -25,13 +25,13 @@
 
 	<!-- STACK Budget -->
 	<div class="stack-box highlight">
-		<div class="title">Budget</div> 
+		<div class="title">Job budget</div> 
 		<%= budget(@project.budget) %>
 	</div>
 
 	<!-- STACK handler -->
 	<div class="stack-box <%= "highlight" if @project.handled %>" id="handler-box">
-		<div class="title">Surveyor</div> 
+		<div class="title">Assigned to</div> 
 		<%= test_handler(@project.handled) %>
 	</div>
 
@@ -43,13 +43,13 @@
 
 	<!-- STACK Team -->
 	<div class="stack-box <%= "highlight" if @project.team %>" id="team-box">
-		<div class="title">Team</div> 
+		<div class="title">Assigned team</div> 
 		<%= test_team(@project.team) %>
 	</div>
 
 	<!-- STACK Start Date -->
 	<div class="stack-box <%= "highlight" if @project.start_date %>" id="start-box">
-		<div class="title">Start date</div> 
+		<div class="title">Est. Start date</div> 
 		<%= test_start(@project.start_date) %>
 	</div>
 
